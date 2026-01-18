@@ -16,9 +16,9 @@ services:
       - key: ADMIN_PASSWORD
         value: Admin123!
       - key: CLIENT_URL
-        value: https://threespacshine.netlify.app
+        value: https://threespacshine-production.netlify.app
       - key: DATABASE_URL
-        sync: false
+        value: postgresql://neondb_owner:npg_Qab2v0WTBXue@ep-lucky-king-ae48anz8-pooler.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require
       - key: BUSINESS_NAME
         value: Three Space Shine
       - key: BUSINESS_EMAIL
