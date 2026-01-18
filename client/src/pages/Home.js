@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Car, Home as HomeIcon, Building2, Star, CheckCircle, ArrowRight, Phone, Mail, MapPin, Users, Award, Clock, TrendingUp } from 'lucide-react';
+import { Car, Home as HomeIcon, Building2, Star, CheckCircle, ArrowRight, Phone, Mail, MapPin, Users, Award, Clock, TrendingUp, ChevronLeft, ChevronRight, Calendar, User, LogIn, UserPlus, MessageCircle } from 'lucide-react';
 
 const HomePage = () => {
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [beforeAfterSlide, setBeforeAfterSlide] = useState(0);
+
   const services = [
     {
       icon: Car,
@@ -30,57 +33,38 @@ const HomePage = () => {
     },
   ];
 
-  const features = [
-    'Professional & Experienced Team',
-    'Eco-Friendly Products',
-    'Satisfaction Guaranteed',
-    'Flexible Scheduling',
-    'Competitive Pricing',
-    'Indianapolis Local',
-  ];
-
   const testimonials = [
     {
       name: 'Sarah Johnson',
       service: 'Car Detailing - Elite Package',
       rating: 5,
       review: 'Absolutely amazing service! My car looks brand new. The team was professional, punctual, and the attention to detail was incredible. Highly recommend!',
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop'
+      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop',
+      location: 'Indianapolis, IN'
     },
     {
       name: 'Michael Davis',
       service: 'House Detailing - Premium Package',
       rating: 5,
       review: 'Three Space Shine transformed my home! Every corner was spotless. They used eco-friendly products and were very respectful of our space. Worth every penny!',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop'
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop',
+      location: 'Carmel, IN'
     },
     {
       name: 'Jennifer Martinez',
       service: 'Office Detailing - Elite Package',
       rating: 5,
       review: 'Our office has never looked better! The team worked efficiently after hours and left everything pristine. Our clients have noticed the difference!',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop'
+      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop',
+      location: 'Fishers, IN'
     },
     {
       name: 'Robert Thompson',
       service: 'Car Detailing - Premium Package',
       rating: 5,
       review: 'Best detailing service in Indianapolis! They removed stains I thought were permanent. The interior smells fresh and the exterior shines like a mirror!',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop'
-    },
-    {
-      name: 'Emily Wilson',
-      service: 'House Detailing - Basic Package',
-      rating: 5,
-      review: 'Even the basic package exceeded my expectations! Very thorough cleaning, friendly staff, and great value for money. Will definitely book again!',
-      image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop'
-    },
-    {
-      name: 'David Brown',
-      service: 'Office Detailing - Premium Package',
-      rating: 5,
-      review: 'Professional service from start to finish. They worked around our schedule and delivered outstanding results. Our workspace feels brand new!',
-      image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop'
+      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop',
+      location: 'Noblesville, IN'
     }
   ];
 
@@ -93,19 +77,22 @@ const HomePage = () => {
 
   const beforeAfter = [
     {
-      before: 'https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=400&h=300&fit=crop',
-      after: 'https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?w=400&h=300&fit=crop',
-      title: 'Car Interior Transformation'
+      before: 'https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=600&h=400&fit=crop',
+      after: 'https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?w=600&h=400&fit=crop',
+      title: 'Car Interior Transformation',
+      description: 'Complete interior detailing with stain removal'
     },
     {
-      before: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop',
-      after: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?w=400&h=300&fit=crop',
-      title: 'Living Room Deep Clean'
+      before: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
+      after: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?w=600&h=400&fit=crop',
+      title: 'Living Room Deep Clean',
+      description: 'Professional home detailing service'
     },
     {
-      before: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=400&h=300&fit=crop',
-      after: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
-      title: 'Office Space Detailing'
+      before: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=600&h=400&fit=crop',
+      after: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop',
+      title: 'Office Space Detailing',
+      description: 'Commercial workspace transformation'
     }
   ];
 
@@ -120,26 +107,93 @@ const HomePage = () => {
     ));
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
+
+  const nextTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  const nextSlide = () => {
+    setBeforeAfterSlide((prev) => (prev + 1) % beforeAfter.length);
+  };
+
+  const prevSlide = () => {
+    setBeforeAfterSlide((prev) => (prev - 1 + beforeAfter.length) % beforeAfter.length);
+  };
+
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
+      {/* Top Bar with Login/Register */}
+      <div style={{
+        backgroundColor: '#1e3a8a',
+        color: 'white',
+        padding: '0.75rem 0',
+        fontSize: '0.875rem'
+      }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+            <a href="tel:3174463498" style={{ color: 'white', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <Phone className="h-4 w-4" />
+              <span>(317) 446-3498</span>
+            </a>
+            <a href="mailto:info@threespacshine.com" style={{ color: 'white', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <Mail className="h-4 w-4" />
+              <span>info@threespacshine.com</span>
+            </a>
+          </div>
+          <div style={{ display: 'flex', gap: '1rem' }}>
+            <Link to="/login" style={{
+              color: 'white',
+              textDecoration: 'none',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              padding: '0.5rem 1rem',
+              backgroundColor: 'rgba(255,255,255,0.1)',
+              borderRadius: '0.375rem',
+              fontWeight: '600',
+              transition: 'all 0.3s'
+            }}>
+              <LogIn className="h-4 w-4" />
+              <span>Login</span>
+            </Link>
+            <Link to="/register" style={{
+              color: '#1e3a8a',
+              backgroundColor: 'white',
+              textDecoration: 'none',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              padding: '0.5rem 1rem',
+              borderRadius: '0.375rem',
+              fontWeight: '700',
+              transition: 'all 0.3s'
+            }}>
+              <UserPlus className="h-4 w-4" />
+              <span>Sign Up</span>
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Hero Section with Booking Form */}
       <section style={{
         position: 'relative',
-        background: 'linear-gradient(to right, #1e3a8a, #1e40af, #1e3a8a)',
+        background: 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%)',
         color: 'white',
-        paddingTop: '8rem',
-        paddingBottom: '8rem',
+        paddingTop: '6rem',
+        paddingBottom: '6rem',
         overflow: 'hidden'
       }}>
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: 'rgba(0, 0, 0, 0.4)',
-          zIndex: 1
-        }}></div>
         <div style={{
           position: 'absolute',
           top: 0,
@@ -149,33 +203,33 @@ const HomePage = () => {
           backgroundImage: 'url("https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1920&q=80")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          opacity: 0.3,
+          opacity: 0.2,
           zIndex: 0
         }}></div>
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ position: 'relative', zIndex: 10 }}>
-          <div className="text-center">
-            <h1 style={{ fontSize: '3.75rem', fontWeight: 'bold', marginBottom: '1.5rem', textShadow: '0 4px 6px rgba(0,0,0,0.3)' }}>
-              Three Space Shine
-            </h1>
-            <p style={{ fontSize: '1.875rem', marginBottom: '1rem', fontWeight: '600' }}>
-              Premium Detailing Services in Indianapolis, Indiana
-            </p>
-            <p style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: '#bfdbfe' }}>
-              Car • House • Office - We Make Everything Shine
-            </p>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem', marginBottom: '2rem' }}>
-              <Phone className="h-6 w-6" />
-              <a href="tel:3174463498" style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'white', textDecoration: 'none' }}>
-                (317) 446-3498
-              </a>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-              <Link
-                to="/services"
-                style={{
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center' }}>
+            {/* Left Side - Content */}
+            <div>
+              <h1 style={{ fontSize: '3.5rem', fontWeight: '800', marginBottom: '1.5rem', lineHeight: '1.1' }}>
+                Premium Detailing<br/>Services in Indianapolis
+              </h1>
+              <p style={{ fontSize: '1.25rem', marginBottom: '2rem', opacity: 0.9 }}>
+                Car • House • Office - We Make Everything Shine
+              </p>
+              <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem' }}>
+                {stats.slice(0, 2).map((stat, index) => (
+                  <div key={index} style={{ textAlign: 'center', padding: '1rem', backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: '0.5rem', backdropFilter: 'blur(10px)' }}>
+                    <div style={{ fontSize: '2rem', fontWeight: 'bold' }}>{stat.number}</div>
+                    <div style={{ fontSize: '0.875rem', opacity: 0.9 }}>{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+              <div style={{ display: 'flex', gap: '1rem' }}>
+                <a href="tel:3174463498" style={{
                   backgroundColor: 'white',
                   color: '#1e3a8a',
-                  padding: '1rem 2.5rem',
+                  padding: '1rem 2rem',
                   borderRadius: '0.5rem',
                   fontWeight: 'bold',
                   fontSize: '1.125rem',
@@ -183,40 +237,131 @@ const HomePage = () => {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.5rem',
-                  boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+                  boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
                   transition: 'all 0.3s'
-                }}
-              >
-                <span>Book Now</span>
-                <ArrowRight className="h-6 w-6" />
-              </Link>
-              <Link
-                to="/gallery"
-                style={{
-                  border: '3px solid white',
+                }}>
+                  <Phone className="h-5 w-5" />
+                  <span>Call Now</span>
+                </a>
+                <Link to="/services" style={{
+                  border: '2px solid white',
                   color: 'white',
-                  padding: '1rem 2.5rem',
+                  padding: '1rem 2rem',
                   borderRadius: '0.5rem',
                   fontWeight: 'bold',
                   fontSize: '1.125rem',
                   textDecoration: 'none',
                   display: 'inline-flex',
                   alignItems: 'center',
-                  boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+                  gap: '0.5rem',
                   transition: 'all 0.3s'
-                }}
-              >
-                View Gallery
-              </Link>
+                }}>
+                  <span>View Services</span>
+                  <ArrowRight className="h-5 w-5" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Right Side - Quick Booking Form */}
+            <div style={{
+              backgroundColor: 'white',
+              padding: '2rem',
+              borderRadius: '1rem',
+              boxShadow: '0 20px 50px rgba(0,0,0,0.3)'
+            }}>
+              <h3 style={{ color: '#1e3a8a', fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem', textAlign: 'center' }}>
+                Book Your Service Now
+              </h3>
+              <form style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  style={{
+                    padding: '0.875rem',
+                    border: '2px solid #e5e7eb',
+                    borderRadius: '0.5rem',
+                    fontSize: '1rem',
+                    outline: 'none',
+                    transition: 'border 0.3s'
+                  }}
+                />
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  style={{
+                    padding: '0.875rem',
+                    border: '2px solid #e5e7eb',
+                    borderRadius: '0.5rem',
+                    fontSize: '1rem',
+                    outline: 'none'
+                  }}
+                />
+                <input
+                  type="tel"
+                  placeholder="Phone Number"
+                  style={{
+                    padding: '0.875rem',
+                    border: '2px solid #e5e7eb',
+                    borderRadius: '0.5rem',
+                    fontSize: '1rem',
+                    outline: 'none'
+                  }}
+                />
+                <select style={{
+                  padding: '0.875rem',
+                  border: '2px solid #e5e7eb',
+                  borderRadius: '0.5rem',
+                  fontSize: '1rem',
+                  outline: 'none',
+                  color: '#6b7280'
+                }}>
+                  <option>Select Service</option>
+                  <option>Car Detailing</option>
+                  <option>House Detailing</option>
+                  <option>Office Detailing</option>
+                </select>
+                <input
+                  type="date"
+                  style={{
+                    padding: '0.875rem',
+                    border: '2px solid #e5e7eb',
+                    borderRadius: '0.5rem',
+                    fontSize: '1rem',
+                    outline: 'none'
+                  }}
+                />
+                <Link to="/services" style={{
+                  backgroundColor: '#1e3a8a',
+                  color: 'white',
+                  padding: '1rem',
+                  borderRadius: '0.5rem',
+                  fontWeight: 'bold',
+                  fontSize: '1.125rem',
+                  textAlign: 'center',
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.5rem',
+                  boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                  transition: 'all 0.3s'
+                }}>
+                  <Calendar className="h-5 w-5" />
+                  <span>Book Appointment</span>
+                </Link>
+              </form>
+              <p style={{ color: '#6b7280', fontSize: '0.875rem', textAlign: 'center', marginTop: '1rem' }}>
+                Or call us at <a href="tel:3174463498" style={{ color: '#1e3a8a', fontWeight: 'bold', textDecoration: 'none' }}>(317) 446-3498</a>
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Stats Banner */}
       <section style={{
-        paddingTop: '4rem',
-        paddingBottom: '4rem',
+        paddingTop: '3rem',
+        paddingBottom: '3rem',
         background: 'linear-gradient(to right, #2563eb, #1e40af)',
         color: 'white'
       }}>
@@ -225,7 +370,7 @@ const HomePage = () => {
             {stats.map((stat, index) => (
               <div key={index} style={{ textAlign: 'center' }}>
                 <stat.icon style={{ height: '3rem', width: '3rem', margin: '0 auto 1rem auto' }} />
-                <div style={{ fontSize: '2.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>{stat.number}</div>
+                <div style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>{stat.number}</div>
                 <div style={{ color: '#bfdbfe', fontSize: '1.125rem' }}>{stat.label}</div>
               </div>
             ))}
@@ -233,46 +378,188 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="py-16 bg-white">
+      {/* Before/After Slider */}
+      <section style={{ paddingTop: '5rem', paddingBottom: '5rem', backgroundColor: '#f9fafb' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-4">Our Services</h2>
-          <p className="text-xl text-gray-600 text-center mb-12">Professional detailing for every need</p>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <h2 style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1rem', color: '#111827' }}>
+              See The Transformation
+            </h2>
+            <p style={{ fontSize: '1.25rem', color: '#6b7280' }}>
+              Real results from real customers
+            </p>
+          </div>
+          
+          <div style={{ position: 'relative', maxWidth: '900px', margin: '0 auto' }}>
+            <div style={{ backgroundColor: 'white', borderRadius: '1rem', overflow: 'hidden', boxShadow: '0 20px 50px rgba(0,0,0,0.1)' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
+                <div style={{ position: 'relative' }}>
+                  <img src={beforeAfter[beforeAfterSlide].before} alt="Before" style={{ width: '100%', height: '400px', objectFit: 'cover' }} />
+                  <div style={{
+                    position: 'absolute',
+                    top: '1rem',
+                    left: '1rem',
+                    backgroundColor: '#ef4444',
+                    color: 'white',
+                    padding: '0.5rem 1rem',
+                    borderRadius: '9999px',
+                    fontWeight: 'bold',
+                    fontSize: '0.875rem'
+                  }}>
+                    BEFORE
+                  </div>
+                </div>
+                <div style={{ position: 'relative' }}>
+                  <img src={beforeAfter[beforeAfterSlide].after} alt="After" style={{ width: '100%', height: '400px', objectFit: 'cover' }} />
+                  <div style={{
+                    position: 'absolute',
+                    top: '1rem',
+                    right: '1rem',
+                    backgroundColor: '#10b981',
+                    color: 'white',
+                    padding: '0.5rem 1rem',
+                    borderRadius: '9999px',
+                    fontWeight: 'bold',
+                    fontSize: '0.875rem'
+                  }}>
+                    AFTER
+                  </div>
+                </div>
+              </div>
+              <div style={{ padding: '2rem', textAlign: 'center' }}>
+                <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#111827' }}>
+                  {beforeAfter[beforeAfterSlide].title}
+                </h3>
+                <p style={{ color: '#6b7280' }}>{beforeAfter[beforeAfterSlide].description}</p>
+              </div>
+            </div>
+            
+            <button
+              onClick={prevSlide}
+              style={{
+                position: 'absolute',
+                left: '-1.5rem',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                backgroundColor: 'white',
+                borderRadius: '50%',
+                padding: '1rem',
+                boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                border: 'none',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
+              <ChevronLeft className="h-6 w-6" style={{ color: '#1e3a8a' }} />
+            </button>
+            <button
+              onClick={nextSlide}
+              style={{
+                position: 'absolute',
+                right: '-1.5rem',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                backgroundColor: 'white',
+                borderRadius: '50%',
+                padding: '1rem',
+                boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                border: 'none',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
+              <ChevronRight className="h-6 w-6" style={{ color: '#1e3a8a' }} />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section style={{ paddingTop: '5rem', paddingBottom: '5rem', backgroundColor: 'white' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <h2 style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1rem', color: '#111827' }}>
+              Our Premium Services
+            </h2>
+            <p style={{ fontSize: '1.25rem', color: '#6b7280' }}>
+              Professional detailing for every need
+            </p>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
             {services.map((service, index) => (
               <div
                 key={index}
-                className="card hover:shadow-2xl transition-all duration-300 overflow-hidden group"
+                style={{
+                  backgroundColor: 'white',
+                  borderRadius: '1rem',
+                  overflow: 'hidden',
+                  boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                  transition: 'all 0.3s',
+                  border: '2px solid transparent'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-8px)';
+                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.15)';
+                  e.currentTarget.style.borderColor = '#3b82f6';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+                  e.currentTarget.style.borderColor = 'transparent';
+                }}
               >
-                <div className="relative h-48 overflow-hidden">
+                <div style={{ position: 'relative', height: '200px', overflow: 'hidden' }}>
                   <img 
                     src={service.image} 
                     alt={service.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  <service.icon className="absolute bottom-4 left-4 h-12 w-12 text-white" />
+                  <div style={{
+                    position: 'absolute',
+                    bottom: '1rem',
+                    left: '1rem',
+                    backgroundColor: 'white',
+                    padding: '0.75rem',
+                    borderRadius: '0.5rem',
+                    boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+                  }}>
+                    <service.icon style={{ height: '2rem', width: '2rem', color: '#1e3a8a' }} />
+                  </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold mb-3">
+                <div style={{ padding: '1.5rem' }}>
+                  <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '0.75rem', color: '#111827' }}>
                     {service.title}
                   </h3>
-                  <p className="text-gray-600 mb-4">
+                  <p style={{ color: '#6b7280', marginBottom: '1rem' }}>
                     {service.description}
                   </p>
-                  <div className="space-y-2 mb-6">
+                  <div style={{ marginBottom: '1.5rem' }}>
                     {service.packages.map((pkg, idx) => (
-                      <div key={idx} className="flex items-center space-x-2">
-                        <CheckCircle className="h-5 w-5 text-green-500" />
-                        <span className="text-gray-700 font-medium">{pkg}</span>
+                      <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                        <CheckCircle style={{ height: '1.25rem', width: '1.25rem', color: '#10b981' }} />
+                        <span style={{ color: '#374151', fontWeight: '500' }}>{pkg}</span>
                       </div>
                     ))}
                   </div>
                   <Link
                     to={service.link}
-                    className="btn-primary w-full text-center block"
+                    style={{
+                      display: 'block',
+                      textAlign: 'center',
+                      backgroundColor: '#1e3a8a',
+                      color: 'white',
+                      padding: '0.75rem',
+                      borderRadius: '0.5rem',
+                      fontWeight: 'bold',
+                      textDecoration: 'none',
+                      transition: 'all 0.3s'
+                    }}
                   >
-                    Learn More
+                    Book Now
                   </Link>
                 </div>
               </div>
@@ -281,175 +568,213 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Before/After Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-4">See The Difference</h2>
-          <p className="text-xl text-gray-600 text-center mb-12">Real results from real customers</p>
-          <div className="grid md:grid-cols-3 gap-8">
-            {beforeAfter.map((item, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
-                <div className="grid grid-cols-2">
-                  <div className="relative">
-                    <img src={item.before} alt="Before" className="w-full h-48 object-cover" />
-                    <div className="absolute top-2 left-2 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">
-                      Before
-                    </div>
-                  </div>
-                  <div className="relative">
-                    <img src={item.after} alt="After" className="w-full h-48 object-cover" />
-                    <div className="absolute top-2 right-2 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">
-                      After
-                    </div>
-                  </div>
-                </div>
-                <div className="p-4 text-center">
-                  <h3 className="font-bold text-lg">{item.title}</h3>
-                </div>
-              </div>
-            ))}
+      {/* Testimonials Carousel */}
+      <section style={{ paddingTop: '5rem', paddingBottom: '5rem', background: 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%)', color: 'white' }}>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <h2 style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>
+              What Our Customers Say
+            </h2>
+            <p style={{ fontSize: '1.25rem', opacity: 0.9 }}>
+              Don't just take our word for it
+            </p>
           </div>
-        </div>
-      </section>
-
-      {/* Customer Reviews Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">What Our Customers Say</h2>
-            <p className="text-xl text-gray-600">Don't just take our word for it - hear from our satisfied customers</p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-blue-500 hover:shadow-xl transition-all duration-300"
-              >
-                <div className="flex items-center mb-4">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-16 h-16 rounded-full object-cover mr-4"
-                  />
-                  <div>
-                    <h3 className="font-bold text-lg">{testimonial.name}</h3>
-                    <p className="text-sm text-gray-600">{testimonial.service}</p>
+          
+          <div style={{ position: 'relative' }}>
+            <div style={{
+              backgroundColor: 'white',
+              color: '#111827',
+              padding: '3rem',
+              borderRadius: '1rem',
+              boxShadow: '0 20px 50px rgba(0,0,0,0.3)',
+              minHeight: '300px'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', marginBottom: '2rem' }}>
+                <img
+                  src={testimonials[currentTestimonial].image}
+                  alt={testimonials[currentTestimonial].name}
+                  style={{ width: '80px', height: '80px', borderRadius: '50%', objectFit: 'cover', marginRight: '1.5rem' }}
+                />
+                <div>
+                  <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '0.25rem' }}>
+                    {testimonials[currentTestimonial].name}
+                  </h3>
+                  <p style={{ color: '#6b7280', fontSize: '0.875rem', marginBottom: '0.5rem' }}>
+                    {testimonials[currentTestimonial].location}
+                  </p>
+                  <div style={{ display: 'flex', gap: '0.25rem' }}>
+                    {renderStars(testimonials[currentTestimonial].rating)}
                   </div>
                 </div>
-                <div className="flex mb-3">
-                  {renderStars(testimonial.rating)}
-                </div>
-                <p className="text-gray-700 italic">"{testimonial.review}"</p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">Why Choose Us?</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className="flex items-center space-x-3 bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow"
-              >
-                <CheckCircle className="h-8 w-8 text-green-500 flex-shrink-0" />
-                <span className="text-gray-800 font-semibold text-lg">{feature}</span>
-              </div>
-            ))}
+              <p style={{ fontSize: '1.125rem', lineHeight: '1.8', fontStyle: 'italic', color: '#374151', marginBottom: '1rem' }}>
+                "{testimonials[currentTestimonial].review}"
+              </p>
+              <p style={{ color: '#6b7280', fontSize: '0.875rem', fontWeight: '600' }}>
+                {testimonials[currentTestimonial].service}
+              </p>
+            </div>
+            
+            <button
+              onClick={prevTestimonial}
+              style={{
+                position: 'absolute',
+                left: '-1.5rem',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                backgroundColor: 'white',
+                borderRadius: '50%',
+                padding: '1rem',
+                boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                border: 'none',
+                cursor: 'pointer'
+              }}
+            >
+              <ChevronLeft className="h-6 w-6" style={{ color: '#1e3a8a' }} />
+            </button>
+            <button
+              onClick={nextTestimonial}
+              style={{
+                position: 'absolute',
+                right: '-1.5rem',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                backgroundColor: 'white',
+                borderRadius: '50%',
+                padding: '1rem',
+                boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                border: 'none',
+                cursor: 'pointer'
+              }}
+            >
+              <ChevronRight className="h-6 w-6" style={{ color: '#1e3a8a' }} />
+            </button>
+            
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginTop: '2rem' }}>
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentTestimonial(index)}
+                  style={{
+                    width: '12px',
+                    height: '12px',
+                    borderRadius: '50%',
+                    border: 'none',
+                    backgroundColor: index === currentTestimonial ? 'white' : 'rgba(255,255,255,0.3)',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s'
+                  }}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold mb-6">Ready to Get Started?</h2>
-          <p className="text-2xl mb-8">
-            Book your detailing service today and experience the Three Space Shine difference
+      <section style={{ paddingTop: '5rem', paddingBottom: '5rem', backgroundColor: 'white' }}>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 style={{ fontSize: '3rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#111827' }}>
+            Ready to Experience the Shine?
+          </h2>
+          <p style={{ fontSize: '1.25rem', color: '#6b7280', marginBottom: '2.5rem' }}>
+            Join 2,500+ satisfied customers and book your detailing service today
           </p>
-          <div className="flex justify-center space-x-4">
-            <Link
-              to="/services"
-              className="bg-white text-blue-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors inline-flex items-center space-x-2 shadow-xl"
-            >
-              <span>Book Your Service</span>
-              <ArrowRight className="h-6 w-6" />
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+            <Link to="/register" style={{
+              backgroundColor: '#1e3a8a',
+              color: 'white',
+              padding: '1.25rem 2.5rem',
+              borderRadius: '0.5rem',
+              fontWeight: 'bold',
+              fontSize: '1.125rem',
+              textDecoration: 'none',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              boxShadow: '0 10px 25px rgba(30,58,138,0.3)',
+              transition: 'all 0.3s'
+            }}>
+              <UserPlus className="h-5 w-5" />
+              <span>Create Account</span>
             </Link>
-            <a
-              href="tel:3174463498"
-              className="border-3 border-white text-white px-10 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-blue-600 transition-all inline-flex items-center space-x-2"
-            >
-              <Phone className="h-6 w-6" />
-              <span>Call Now</span>
+            <a href="tel:3174463498" style={{
+              border: '2px solid #1e3a8a',
+              color: '#1e3a8a',
+              padding: '1.25rem 2.5rem',
+              borderRadius: '0.5rem',
+              fontWeight: 'bold',
+              fontSize: '1.125rem',
+              textDecoration: 'none',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              transition: 'all 0.3s'
+            }}>
+              <Phone className="h-5 w-5" />
+              <span>(317) 446-3498</span>
             </a>
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold mb-8 text-gray-900">Get In Touch</h2>
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
-            <div className="flex flex-col items-center p-6 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
-              <Phone className="h-12 w-12 text-blue-600 mb-4" />
-              <h3 className="text-xl font-bold mb-2">Call Us</h3>
-              <a href="tel:3174463498" className="text-2xl font-bold text-blue-600 hover:text-blue-800">
-                (317) 446-3498
-              </a>
-            </div>
-            <div className="flex flex-col items-center p-6 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
-              <Mail className="h-12 w-12 text-blue-600 mb-4" />
-              <h3 className="text-xl font-bold mb-2">Email Us</h3>
-              <a href="mailto:info@threespacshine.com" className="text-lg text-blue-600 hover:text-blue-800">
-                info@threespacshine.com
-              </a>
-            </div>
-            <div className="flex flex-col items-center p-6 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
-              <MapPin className="h-12 w-12 text-blue-600 mb-4" />
-              <h3 className="text-xl font-bold mb-2">Location</h3>
-              <p className="text-lg text-gray-700">Indianapolis, Indiana</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Floating Chat Widget */}
+      <a
+        href="tel:3174463498"
+        style={{
+          position: 'fixed',
+          bottom: '2rem',
+          right: '2rem',
+          backgroundColor: '#1e3a8a',
+          color: 'white',
+          padding: '1rem',
+          borderRadius: '50%',
+          boxShadow: '0 10px 25px rgba(0,0,0,0.3)',
+          zIndex: 1000,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          transition: 'all 0.3s',
+          textDecoration: 'none'
+        }}
+      >
+        <MessageCircle className="h-6 w-6" />
+      </a>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
+      <footer style={{ backgroundColor: '#111827', color: 'white', paddingTop: '3rem', paddingBottom: '2rem' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', marginBottom: '2rem' }}>
             <div>
-              <h3 className="text-2xl font-bold mb-4">Three Space Shine</h3>
-              <p className="text-gray-400 mb-4">
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>Three Space Shine</h3>
+              <p style={{ color: '#9ca3af', marginBottom: '1rem' }}>
                 Premium detailing services for your car, house, and office in Indianapolis, Indiana.
               </p>
-              <div className="flex space-x-2">
+              <div style={{ display: 'flex', gap: '0.25rem' }}>
                 {renderStars(5)}
               </div>
-              <p className="text-sm text-gray-400 mt-2">Rated 5/5 by 2,500+ customers</p>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-4">Contact</h3>
-              <p className="text-gray-400 mb-2">Indianapolis, Indiana</p>
-              <p className="text-gray-400 mb-2">
-                <a href="tel:3174463498" className="hover:text-white">Phone: (317) 446-3498</a>
-              </p>
-              <p className="text-gray-400">
-                <a href="mailto:info@threespacshine.com" className="hover:text-white">Email: info@threespacshine.com</a>
+              <p style={{ color: '#9ca3af', fontSize: '0.875rem', marginTop: '0.5rem' }}>
+                Rated 5/5 by 2,500+ customers
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-bold mb-4">Hours</h3>
-              <p className="text-gray-400">Monday - Friday: 8:00 AM - 6:00 PM</p>
-              <p className="text-gray-400">Saturday: 9:00 AM - 4:00 PM</p>
-              <p className="text-gray-400">Sunday: Closed</p>
+              <h3 style={{ fontSize: '1.125rem', fontWeight: 'bold', marginBottom: '1rem' }}>Contact</h3>
+              <p style={{ color: '#9ca3af', marginBottom: '0.5rem' }}>Indianapolis, Indiana</p>
+              <p style={{ color: '#9ca3af', marginBottom: '0.5rem' }}>
+                <a href="tel:3174463498" style={{ color: '#9ca3af', textDecoration: 'none' }}>Phone: (317) 446-3498</a>
+              </p>
+              <p style={{ color: '#9ca3af' }}>
+                <a href="mailto:info@threespacshine.com" style={{ color: '#9ca3af', textDecoration: 'none' }}>Email: info@threespacshine.com</a>
+              </p>
+            </div>
+            <div>
+              <h3 style={{ fontSize: '1.125rem', fontWeight: 'bold', marginBottom: '1rem' }}>Hours</h3>
+              <p style={{ color: '#9ca3af' }}>Monday - Friday: 8:00 AM - 6:00 PM</p>
+              <p style={{ color: '#9ca3af' }}>Saturday: 9:00 AM - 4:00 PM</p>
+              <p style={{ color: '#9ca3af' }}>Sunday: Closed</p>
             </div>
           </div>
-          <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
+          <div style={{ borderTop: '1px solid #374151', paddingTop: '2rem', textAlign: 'center', color: '#9ca3af' }}>
             <p>&copy; 2026 Three Space Shine. All rights reserved.</p>
           </div>
         </div>
