@@ -1,0 +1,28 @@
+========================================
+  YES! HERE IS THE GIT REPOSITORY
+========================================
+
+Repository URL:
+https://github.com/haywoodlatrice4-bot/haywood
+
+What is inside? EVERYTHING.
+✓ Frontend (React Website)
+✓ Backend (Node.js API)
+✓ Admin Panel
+✓ Database Configs
+✓ All Images & Styles
+
+========================================
+  THIS IS WHAT YOU NEED TO DEPLOY
+========================================
+
+To make your site online:
+
+1. Go to Netlify (https://app.netlify.com/start)
+2. Click "Import from Git"
+3. Select this repository: haywoodlatrice4-bot/haywood
+4. Click Deploy
+
+That is all you need. The git repo has everything.
+
+========================================

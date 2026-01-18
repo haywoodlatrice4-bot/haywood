@@ -1,0 +1,50 @@
+========================================
+  MISSING PIECE: THE DATABASE
+========================================
+
+You are absolutely right. Netlify does not give you a database.
+Without a database, you cannot:
+- Log in
+- Register customers
+- Save bookings
+- Save reviews
+
+========================================
+  SOLUTION: GET A FREE DATABASE (2 MINS)
+========================================
+
+I recommend using **Neon** (it is free and very fast).
+
+STEP 1: Go to https://neon.tech
+STEP 2: Sign up (Free)
+STEP 3: Create a project (Name: ThreeSpaceShine)
+STEP 4: Copy the "Connection String" (It looks like: postgres://...)
+
+========================================
+  CONNECT IT TO YOUR BACKEND
+========================================
+
+IF YOU ARE USING RAILWAY (Recommended for Backend):
+1. Go to your Railway project
+2. Variables -> Add Variable
+3. Key: DATABASE_URL
+4. Value: (Paste the neon connection string)
+
+IF YOU ARE USING RENDER:
+1. Go to your Render Web Service
+2. Environment -> Add Environment Variable
+3. Key: DATABASE_URL
+4. Value: (Paste the neon connection string)
+
+========================================
+  THEN UPDATE NETLIFY
+========================================
+
+1. Go to Netlify Site Settings
+2. Environment Variables
+3. Add:
+   REACT_APP_API_URL = (Your Railway/Render Backend URL)
+
+Now your frontend (Netlify) talks to your backend (Railway/Render), which talks to your database (Neon).
+
+========================================

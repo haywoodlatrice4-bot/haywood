@@ -1,0 +1,44 @@
+========================================
+  YOU FOUND THE MISSING PIECE!
+========================================
+
+You are absolutely right. The DATABASE_URL is missing because **Netlify DOES NOT provide a database.**
+
+Netlify = Frontend Only (The pretty website).
+Railway = Backend + Database (The brain and memory).
+
+To fix this, you need to deploy your Backend to **Railway**.
+
+========================================
+  STEPS TO FIX (5 MINUTES)
+========================================
+
+1. Go to https://railway.app and login with GitHub.
+
+2. Click "New Project" -> "Deploy from GitHub repo".
+   Select: haywoodlatrice4-bot/haywood
+
+3. Add these variables in Railway:
+   - JWT_SECRET = threespacshine-secret-2026
+   - ADMIN_EMAIL = haywoodlatrice4@gmail.com
+   - ADMIN_PASSWORD = Admin123!
+   - NODE_ENV = production
+   - PORT = 5000
+
+4. **CRITICAL STEP:**
+   Click "New" -> "Database" -> "PostgreSQL".
+   Railway will AUTOMATICALLY link this database to your backend.
+   (This creates the DATABASE_URL for you!)
+
+5. Get your Backend URL from Railway (Settings -> Networking).
+
+6. Go back to Netlify -> Site Settings -> Environment Variables.
+   Update REACT_APP_API_URL to be your new Railway URL + "/api".
+
+========================================
+  WHY DO THIS?
+========================================
+
+- Netlify makes your site fast.
+- Railway handles your data and logins.
+- Together, they make a complete professional app.

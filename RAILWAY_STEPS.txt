@@ -1,0 +1,33 @@
+========================================
+  STEP 1: GET YOUR BACKEND & DATABASE (RAILWAY)
+========================================
+
+1. Go to https://railway.app
+2. Login with GitHub
+3. "New Project" -> "Deploy from GitHub repo"
+4. Select "haywoodlatrice4-bot/haywood"
+5. Add Variables:
+   - JWT_SECRET = threespacshine-secret-2026
+   - ADMIN_EMAIL = haywoodlatrice4@gmail.com
+   - ADMIN_PASSWORD = Admin123!
+   - NODE_ENV = production
+   - PORT = 5000
+6. Add Database (PostgreSQL) - Railway does this automatically if you click "Add Database"
+
+========================================
+  STEP 2: GET THE URLS
+========================================
+
+1. In Railway, go to Settings -> Networking -> Generate Domain
+2. Copy the URL (e.g. https://web-production.up.railway.app)
+
+========================================
+  STEP 3: UPDATE NETLIFY
+========================================
+
+1. Go to Netlify -> Site Settings -> Environment Variables
+2. Update REACT_APP_API_URL
+3. New Value: https://[YOUR-RAILWAY-URL]/api
+4. Redeploy Netlify
+
+DONE!

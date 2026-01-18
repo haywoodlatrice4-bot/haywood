@@ -1,0 +1,42 @@
+========================================
+  HOW TO GET YOUR DATABASE URL
+========================================
+
+You are right - you need a database for logins and bookings to work.
+Netlify does not give you one.
+
+Here is the easiest way to get one for free:
+
+OPTION 1: USE RAILWAY (Recommended)
+----------------------------------------
+Railway hosts your Backend AND Database together.
+
+1. Go to https://railway.app
+2. Login with GitHub
+3. Click "New Project" -> "Deploy from GitHub repo"
+4. Select "haywoodlatrice4-bot/haywood"
+5. Click "Add a Database" -> Select PostgreSQL
+6. Railway will automatically create the DATABASE_URL for you!
+
+OPTION 2: USE NEON (Database Only)
+----------------------------------------
+1. Go to https://neon.tech
+2. Sign up
+3. Create Project "ThreeSpaceShine"
+4. Copy the "Connection String"
+5. That is your DATABASE_URL!
+
+========================================
+  WHERE TO PUT THE DATABASE_URL?
+========================================
+
+You need to put this URL in your BACKEND host settings (Railway or Render).
+
+If using Railway for everything:
+- You don't even need to copy it, Railway links it automatically.
+
+If using Render for Backend + Neon for DB:
+- Go to Render Dashboard -> Environment Variables
+- Add DATABASE_URL = (paste Neon string)
+
+========================================

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Car, Home as HomeIcon, Building2, Star, CheckCircle, ArrowRight } from 'lucide-react';
+import { Car, Home as HomeIcon, Building2, Star, CheckCircle, ArrowRight, Phone, Mail, MapPin } from 'lucide-react';
 
 const HomePage = () => {
   const services = [
@@ -38,29 +38,42 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen">
-      <section className="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 text-white py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-black opacity-40"></div>
+        <div className="absolute inset-0" style={{
+          backgroundImage: 'url("https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1920&q=80")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.3
+        }}></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
-            <h1 className="text-5xl font-bold mb-6">
+            <h1 className="text-6xl font-bold mb-6 drop-shadow-lg">
               Three Space Shine
             </h1>
-            <p className="text-2xl mb-4">
+            <p className="text-3xl mb-4 font-semibold">
               Premium Detailing Services in Indianapolis, Indiana
             </p>
-            <p className="text-xl mb-8 text-primary-100">
+            <p className="text-2xl mb-6 text-blue-100">
               Car • House • Office - We Make Everything Shine
             </p>
+            <div className="flex justify-center items-center space-x-2 mb-8">
+              <Phone className="h-6 w-6" />
+              <a href="tel:3174463498" className="text-2xl font-bold hover:text-blue-200 transition-colors">
+                (317) 446-3498
+              </a>
+            </div>
             <div className="flex justify-center space-x-4">
               <Link
                 to="/services"
-                className="bg-white text-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center space-x-2"
+                className="bg-white text-blue-900 px-10 py-4 rounded-lg font-bold text-lg hover:bg-blue-50 transition-all transform hover:scale-105 inline-flex items-center space-x-2 shadow-xl"
               >
                 <span>Book Now</span>
-                <ArrowRight className="h-5 w-5" />
+                <ArrowRight className="h-6 w-6" />
               </Link>
               <Link
                 to="/gallery"
-                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors"
+                className="border-3 border-white text-white px-10 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-blue-900 transition-all transform hover:scale-105 shadow-xl"
               >
                 View Gallery
               </Link>
@@ -140,6 +153,33 @@ const HomePage = () => {
         </div>
       </section>
 
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl font-bold mb-8 text-gray-900">Get In Touch</h2>
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
+            <div className="flex flex-col items-center p-6 bg-blue-50 rounded-lg">
+              <Phone className="h-12 w-12 text-blue-600 mb-4" />
+              <h3 className="text-xl font-bold mb-2">Call Us</h3>
+              <a href="tel:3174463498" className="text-2xl font-bold text-blue-600 hover:text-blue-800">
+                (317) 446-3498
+              </a>
+            </div>
+            <div className="flex flex-col items-center p-6 bg-blue-50 rounded-lg">
+              <Mail className="h-12 w-12 text-blue-600 mb-4" />
+              <h3 className="text-xl font-bold mb-2">Email Us</h3>
+              <a href="mailto:info@threespacshine.com" className="text-lg text-blue-600 hover:text-blue-800">
+                info@threespacshine.com
+              </a>
+            </div>
+            <div className="flex flex-col items-center p-6 bg-blue-50 rounded-lg">
+              <MapPin className="h-12 w-12 text-blue-600 mb-4" />
+              <h3 className="text-xl font-bold mb-2">Location</h3>
+              <p className="text-lg text-gray-700">Indianapolis, Indiana</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <footer className="bg-gray-900 text-white py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
@@ -152,7 +192,7 @@ const HomePage = () => {
             <div>
               <h3 className="text-xl font-bold mb-4">Contact</h3>
               <p className="text-gray-400">Indianapolis, Indiana</p>
-              <p className="text-gray-400">Phone: (317) XXX-XXXX</p>
+              <p className="text-gray-400">Phone: (317) 446-3498</p>
               <p className="text-gray-400">Email: info@threespacshine.com</p>
             </div>
             <div>

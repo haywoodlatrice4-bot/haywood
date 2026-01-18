@@ -1,0 +1,40 @@
+========================================
+  COPY THESE INTO NETLIFY
+========================================
+
+Go to: Site Settings -> Environment Variables -> Add Variable
+
+Key: REACT_APP_API_URL
+Value: https://[your-site-name].netlify.app/api
+
+Key: JWT_SECRET
+Value: threespacshine-secret-2026
+
+Key: ADMIN_EMAIL
+Value: haywoodlatrice4@gmail.com
+
+Key: ADMIN_PASSWORD
+Value: Admin123!
+
+Key: NODE_ENV
+Value: production
+
+Key: BUSINESS_NAME
+Value: Three Space Shine
+
+Key: BUSINESS_EMAIL
+Value: haywoodlatrice4@gmail.com
+
+========================================
+  IMPORTANT NOTES
+========================================
+
+1. For REACT_APP_API_URL: 
+   - If you deploy backend separately (e.g. Railway), use that URL.
+   - If using Netlify Functions (which we are not yet), use site URL + /api.
+   
+2. DATABASE_URL:
+   - You will need a PostgreSQL database URL if you want the backend to work fully.
+   - Netlify does not provide a database. You can use Railway or Supabase to get a free one.
+
+========================================
