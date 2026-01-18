@@ -1,0 +1,47 @@
+========================================
+  GET YOUR SITE ONLINE - 3 SIMPLE STEPS
+========================================
+
+STEP 1: GET TOKEN (2 minutes)
+========================================
+1. Go to: https://github.com/settings/tokens
+2. Click "Generate new token (classic)"
+3. Check the "repo" box
+4. Click "Generate token"
+5. COPY the token (starts with ghp_)
+
+
+STEP 2: PUSH CODE (1 minute)
+========================================
+Open Command Prompt and paste this:
+
+cd c:\Users\USER\CascadeProjects\ThreeSpaceShine && git push https://YOUR_TOKEN@github.com/haywoodlatrice4-bot/haywood.git main
+
+Replace YOUR_TOKEN with the token you copied in Step 1.
+Press Enter.
+
+
+STEP 3: DEPLOY (5 minutes)
+========================================
+1. Go to: https://vercel.com/new
+2. Click "Import Git Repository"
+3. Select "haywoodlatrice4-bot/haywood"
+4. Click "Deploy"
+5. Wait 3 minutes
+
+After deployment:
+- Click Settings → Environment Variables
+- Add: JWT_SECRET = threespacshine-secret-2026
+- Add: ADMIN_EMAIL = haywoodlatrice4@gmail.com
+- Add: ADMIN_PASSWORD = Admin123!
+- Click Storage → Create Database → Postgres
+- Click Deployments → Redeploy
+
+
+DONE! YOUR SITE IS LIVE!
+========================================
+https://threespacshine.vercel.app
+
+Login: haywoodlatrice4@gmail.com / Admin123!
+
+========================================

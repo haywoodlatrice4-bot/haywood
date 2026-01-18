@@ -13,30 +13,7 @@ function AdminBookings() {
   const [statusFilter, setStatusFilter] = useState('all');
   const [serviceFilter, setServiceFilter] = useState('all');
 
-  useEffect(() => {
-    fetchBookings();
-  }, []);
-
-  useEffect(() => {
-    filterBookings();
-  }, [searchTerm, statusFilter, serviceFilter, bookings]);
-
-  const fetchBookings = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      const response = await axios.get(`${API_URL}/admin/bookings`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      setBookings(response.data);
-      setFilteredBookings(response.data);
-    } catch (error) {
-      console.error('Error fetching bookings:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const filterBookings = () => {
+  const filterBookings = React.useCallback(() => {
     let filtered = [...bookings];
 
     if (searchTerm) {

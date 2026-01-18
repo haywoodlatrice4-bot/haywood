@@ -1,0 +1,72 @@
+========================================
+  COPY AND RUN THIS COMMAND
+========================================
+
+Your GitHub repo: https://github.com/haywoodlatrice4-bot/haywood.git
+
+You need a GitHub token to push.
+
+========================================
+  STEP 1: GET TOKEN (30 seconds)
+========================================
+
+Go to: https://github.com/settings/tokens
+
+Click: "Generate new token (classic)"
+Check: "repo" box
+Click: "Generate token"
+COPY the token (starts with ghp_)
+
+
+========================================
+  STEP 2: RUN THIS COMMAND
+========================================
+
+Open Command Prompt and paste:
+
+cd c:\Users\USER\CascadeProjects\ThreeSpaceShine && git push https://YOUR_TOKEN@github.com/haywoodlatrice4-bot/haywood.git main --force
+
+Replace YOUR_TOKEN with your actual token.
+
+
+========================================
+  EXAMPLE
+========================================
+
+If your token is: ghp_abc123xyz
+
+Run:
+cd c:\Users\USER\CascadeProjects\ThreeSpaceShine && git push https://ghp_abc123xyz@github.com/haywoodlatrice4-bot/haywood.git main --force
+
+
+========================================
+  STEP 3: DEPLOY TO VERCEL
+========================================
+
+After push succeeds:
+
+1. Go to: https://vercel.com/new
+2. Click "Import Git Repository"
+3. Select: haywoodlatrice4-bot/haywood
+4. Click "Deploy"
+5. Add environment variables:
+   - JWT_SECRET = threespacshine-secret-2026
+   - ADMIN_EMAIL = haywoodlatrice4@gmail.com
+   - ADMIN_PASSWORD = Admin123!
+6. Create database: Storage → Postgres
+7. Redeploy
+
+DONE! Site live at: https://threespacshine.vercel.app
+
+
+========================================
+  DO IT NOW
+========================================
+
+1. Get token from: https://github.com/settings/tokens
+2. Run the command above with your token
+3. Deploy to Vercel
+
+Total time: 5 minutes
+
+========================================

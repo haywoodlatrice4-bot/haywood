@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { services as servicesAPI, bookings as bookingsAPI } from '../utils/api';
@@ -27,21 +27,7 @@ const BookServicePage = () => {
 
   const [availableTimes, setAvailableTimes] = useState([]);
 
-  useEffect(() => {
-    if (!isAuthenticated) {
-      navigate('/login');
-      return;
-    }
-    fetchService();
-  }, [serviceId, isAuthenticated, navigate]);
-
-  useEffect(() => {
-    if (formData.bookingDate) {
-      fetchAvailability();
-    }
-  }, [formData.bookingDate]);
-
-  const fetchService = async () => {
+  const fetchService = useCallback(async () => {
     try {
       const response = await servicesAPI.getById(serviceId);
       setService(response.data);
@@ -50,16 +36,30 @@ const BookServicePage = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [serviceId]);
 
-  const fetchAvailability = async () => {
+  const fetchAvailability = useCallback(async () => {
     try {
       const response = await bookingsAPI.getAvailability(formData.bookingDate);
       setAvailableTimes(response.data.availableTimes);
     } catch (error) {
       console.error('Error fetching availability:', error);
     }
-  };
+  }, [formData.bookingDate]);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login');
+      return;
+    }
+    fetchService();
+  }, [serviceId, isAuthenticated, navigate, fetchService]);
+
+  useEffect(() => {
+    if (formData.bookingDate) {
+      fetchAvailability();
+    }
+  }, [formData.bookingDate, fetchAvailability]);
 
   const handleChange = (e) => {
     setFormData({

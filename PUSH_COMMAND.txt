@@ -1,0 +1,69 @@
+========================================
+  PUSH TO GITHUB - AUTHENTICATION NEEDED
+========================================
+
+Your code is ready to push to:
+https://github.com/haywoodlatrice4-bot/haywood.git
+
+But you need to authenticate first.
+
+========================================
+  OPTION 1: Use Personal Access Token
+========================================
+
+1. Go to: https://github.com/settings/tokens
+2. Login as: haywoodlatrice4-bot
+3. Click "Generate new token (classic)"
+4. Name it: ThreeSpaceShine
+5. Check "repo" scope
+6. Click "Generate token"
+7. COPY THE TOKEN (you won't see it again!)
+
+8. Then run this command in Command Prompt:
+
+cd c:\Users\USER\CascadeProjects\ThreeSpaceShine
+git push https://YOUR_TOKEN@github.com/haywoodlatrice4-bot/haywood.git main
+
+Replace YOUR_TOKEN with the token you copied.
+
+
+========================================
+  OPTION 2: GitHub Desktop (Easier)
+========================================
+
+1. Download: https://desktop.github.com
+2. Install and open
+3. Login with haywoodlatrice4-bot account
+4. File → Add Local Repository
+5. Select: c:\Users\USER\CascadeProjects\ThreeSpaceShine
+6. Click "Push origin" button
+
+Done!
+
+
+========================================
+  AFTER PUSH - DEPLOY TO VERCEL
+========================================
+
+Once code is on GitHub:
+
+1. Go to: https://vercel.com/new
+2. Click "Import Git Repository"
+3. Authorize Vercel to access GitHub
+4. Select: haywoodlatrice4-bot/haywood
+5. Click Deploy
+
+Then add environment variables and database.
+
+
+========================================
+  YOUR REPOSITORY
+========================================
+
+GitHub: https://github.com/haywoodlatrice4-bot/haywood
+Branch: main
+
+All your code is committed and ready to push.
+Just need authentication!
+
+========================================

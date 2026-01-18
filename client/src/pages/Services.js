@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { services as servicesAPI } from '../utils/api';
 import { Car, Home as HomeIcon, Building2, CheckCircle } from 'lucide-react';
@@ -9,11 +9,7 @@ const ServicesPage = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchServices();
-  }, [selectedCategory]);
-
-  const fetchServices = async () => {
+  const fetchServices = useCallback(async () => {
     try {
       const params = selectedCategory !== 'all' ? { category: selectedCategory } : {};
       const response = await servicesAPI.getAll(params);
@@ -23,7 +19,11 @@ const ServicesPage = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedCategory]);
+
+  useEffect(() => {
+    fetchServices();
+  }, [fetchServices]);
 
   const getCategoryIcon = (category) => {
     switch (category) {

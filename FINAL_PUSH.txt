@@ -1,0 +1,144 @@
+========================================
+  PUSH THREESPACSHINE TO GITHUB
+========================================
+
+STEP 1: GET YOUR GITHUB TOKEN
+========================================
+
+1. Open browser and go to:
+   https://github.com/settings/tokens
+
+2. Login as: haywoodlatrice4-bot
+
+3. Click: "Generate new token (classic)"
+
+4. Fill in:
+   - Note: ThreeSpaceShine
+   - Expiration: 90 days (or No expiration)
+   - Select scopes: Check "repo" box
+
+5. Click: "Generate token"
+
+6. COPY THE TOKEN (looks like: ghp_xxxxxxxxxxxx)
+   Save it somewhere - you won't see it again!
+
+
+STEP 2: PUSH TO GITHUB
+========================================
+
+Open Command Prompt and run this command:
+
+cd c:\Users\USER\CascadeProjects\ThreeSpaceShine && git push https://YOUR_TOKEN@github.com/haywoodlatrice4-bot/haywood.git main
+
+Replace YOUR_TOKEN with the token you copied.
+
+Example:
+git push https://ghp_abc123xyz456@github.com/haywoodlatrice4-bot/haywood.git main
+
+
+STEP 3: VERIFY PUSH
+========================================
+
+After successful push, check:
+https://github.com/haywoodlatrice4-bot/haywood
+
+You should see all your ThreeSpaceShine code!
+
+
+STEP 4: DEPLOY TO VERCEL
+========================================
+
+1. Go to: https://vercel.com/new
+
+2. Click "Import Git Repository"
+
+3. Authorize Vercel to access GitHub
+
+4. Select: haywoodlatrice4-bot/haywood
+
+5. Configure:
+   - Project Name: threespacshine
+   - Framework: Create React App
+   - Root Directory: ./
+   - Build Command: cd client && npm run build
+   - Output Directory: client/build
+
+6. Click "Deploy"
+
+7. Wait 3 minutes
+
+
+STEP 5: ADD ENVIRONMENT VARIABLES
+========================================
+
+After deployment:
+
+1. Go to Settings → Environment Variables
+
+2. Add these (one by one):
+
+   JWT_SECRET
+   threespacshine-secret-2026
+
+   ADMIN_EMAIL
+   haywoodlatrice4@gmail.com
+
+   ADMIN_PASSWORD
+   Admin123!
+
+   CLIENT_URL
+   https://threespacshine.vercel.app
+
+   REACT_APP_API_URL
+   https://threespacshine.vercel.app/api
+
+   NODE_ENV
+   production
+
+
+STEP 6: CREATE DATABASE
+========================================
+
+1. Click Storage tab
+2. Create Database → Postgres
+3. Name: threespacshine-db
+4. Click Create
+
+
+STEP 7: REDEPLOY
+========================================
+
+1. Go to Deployments tab
+2. Click ... on latest deployment
+3. Click Redeploy
+
+
+========================================
+  YOUR LIVE WEBSITE
+========================================
+
+Website: https://threespacshine.vercel.app
+Admin: https://threespacshine.vercel.app/admin
+
+Login:
+Email: haywoodlatrice4@gmail.com
+Password: Admin123!
+
+
+========================================
+  SUMMARY
+========================================
+
+✓ Code is committed and ready
+✓ Git remote is set to haywoodlatrice4-bot/haywood
+✓ Just need token to push
+✓ Then deploy to Vercel
+✓ Site will be live!
+
+Total time: 15 minutes
+
+========================================
+
+START WITH STEP 1 - GET YOUR GITHUB TOKEN!
+
+========================================

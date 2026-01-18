@@ -1,0 +1,58 @@
+========================================
+  PUSH YOUR CODE TO GITHUB NOW
+========================================
+
+Your code is ready. The GitHub repo exists but is empty.
+You just need to push your code to it.
+
+========================================
+  DO THIS RIGHT NOW
+========================================
+
+1. Get your GitHub token:
+   https://github.com/settings/tokens
+   - Click "Generate new token (classic)"
+   - Check "repo"
+   - Click "Generate"
+   - COPY the token
+
+2. Open Command Prompt
+
+3. Copy and paste this command:
+
+cd c:\Users\USER\CascadeProjects\ThreeSpaceShine && git push https://YOUR_TOKEN@github.com/haywoodlatrice4-bot/haywood.git main
+
+4. Replace YOUR_TOKEN with your actual token
+
+5. Press Enter
+
+
+========================================
+  EXAMPLE
+========================================
+
+If your token is: ghp_abc123xyz456
+
+Then run:
+cd c:\Users\USER\CascadeProjects\ThreeSpaceShine && git push https://ghp_abc123xyz456@github.com/haywoodlatrice4-bot/haywood.git main
+
+
+========================================
+  AFTER PUSH SUCCEEDS
+========================================
+
+1. Go to: https://github.com/haywoodlatrice4-bot/haywood
+2. You should see all your code there
+
+3. Then go to: https://vercel.com/new
+4. Import Git Repository
+5. Select: haywoodlatrice4-bot/haywood
+6. Deploy
+
+DONE!
+
+========================================
+
+START NOW - GET YOUR TOKEN AND PUSH!
+
+========================================
