@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import AdminLayout from '../components/AdminLayout';
 import { Search, Filter, CheckCircle, XCircle, Clock, Download } from 'lucide-react';
@@ -13,7 +13,7 @@ function AdminBookings() {
   const [statusFilter, setStatusFilter] = useState('all');
   const [serviceFilter, setServiceFilter] = useState('all');
 
-  const filterBookings = React.useCallback(() => {
+  const filterBookings = useCallback(() => {
     let filtered = [...bookings];
 
     if (searchTerm) {
@@ -33,7 +33,30 @@ function AdminBookings() {
     }
 
     setFilteredBookings(filtered);
-  };
+  }, [bookings, searchTerm, statusFilter, serviceFilter]);
+
+  const fetchBookings = useCallback(async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.get(`${API_URL}/admin/bookings`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setBookings(response.data);
+      setFilteredBookings(response.data);
+    } catch (error) {
+      console.error('Error fetching bookings:', error);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchBookings();
+  }, [fetchBookings]);
+
+  useEffect(() => {
+    filterBookings();
+  }, [filterBookings]);
 
   const updateBookingStatus = async (bookingId, status) => {
     try {
