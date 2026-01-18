@@ -198,55 +198,134 @@ const BookServicePage = () => {
               </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                <MapPin className="inline h-4 w-4 mr-1" />
-                Service Address
-              </label>
-              <input
-                type="text"
-                name="address"
-                required
-                placeholder="123 Main Street"
-                value={formData.address}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-              />
-            </div>
+            <div style={{
+              backgroundColor: '#f9fafb',
+              padding: '1.5rem',
+              borderRadius: '0.75rem',
+              border: '2px solid #e5e7eb'
+            }}>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', color: '#111827' }}>
+                <MapPin className="inline h-5 w-5 mr-2" style={{ color: '#1e3a8a' }} />
+                Service Location
+              </h3>
+              <p style={{ color: '#6b7280', marginBottom: '1.5rem', fontSize: '0.875rem' }}>
+                Enter the address where you'd like us to provide the service. We serve all of Indianapolis and surrounding areas.
+              </p>
 
-            <div className="grid md:grid-cols-3 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">City</label>
+              <div style={{ marginBottom: '1rem' }}>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Street Address *
+                </label>
                 <input
                   type="text"
-                  name="city"
-                  value={formData.city}
+                  name="address"
+                  required
+                  placeholder="123 Main Street, Apt 4B"
+                  value={formData.address}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem',
+                    border: '2px solid #e5e7eb',
+                    borderRadius: '0.5rem',
+                    fontSize: '1rem',
+                    outline: 'none'
+                  }}
+                  onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
+                  onBlur={(e) => e.target.style.borderColor = '#e5e7eb'}
                 />
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">State</label>
-                <input
-                  type="text"
-                  name="state"
-                  value={formData.state}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-                />
+              <div className="grid md:grid-cols-3 gap-4" style={{ marginBottom: '1.5rem' }}>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">City *</label>
+                  <input
+                    type="text"
+                    name="city"
+                    required
+                    value={formData.city}
+                    onChange={handleChange}
+                    style={{
+                      width: '100%',
+                      padding: '0.75rem',
+                      border: '2px solid #e5e7eb',
+                      borderRadius: '0.5rem',
+                      fontSize: '1rem',
+                      outline: 'none'
+                    }}
+                    onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
+                    onBlur={(e) => e.target.style.borderColor = '#e5e7eb'}
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">State *</label>
+                  <input
+                    type="text"
+                    name="state"
+                    required
+                    value={formData.state}
+                    onChange={handleChange}
+                    style={{
+                      width: '100%',
+                      padding: '0.75rem',
+                      border: '2px solid #e5e7eb',
+                      borderRadius: '0.5rem',
+                      fontSize: '1rem',
+                      outline: 'none'
+                    }}
+                    onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
+                    onBlur={(e) => e.target.style.borderColor = '#e5e7eb'}
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">ZIP Code *</label>
+                  <input
+                    type="text"
+                    name="zipCode"
+                    required
+                    placeholder="46201"
+                    value={formData.zipCode}
+                    onChange={handleChange}
+                    style={{
+                      width: '100%',
+                      padding: '0.75rem',
+                      border: '2px solid #e5e7eb',
+                      borderRadius: '0.5rem',
+                      fontSize: '1rem',
+                      outline: 'none'
+                    }}
+                    onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
+                    onBlur={(e) => e.target.style.borderColor = '#e5e7eb'}
+                  />
+                </div>
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">ZIP Code</label>
-                <input
-                  type="text"
-                  name="zipCode"
-                  placeholder="46201"
-                  value={formData.zipCode}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-                />
+              <div style={{
+                backgroundColor: 'white',
+                padding: '1rem',
+                borderRadius: '0.5rem',
+                border: '2px solid #e5e7eb'
+              }}>
+                <h4 style={{ fontSize: '0.875rem', fontWeight: '600', marginBottom: '0.75rem', color: '#374151' }}>
+                  Our Service Area - Indianapolis & Surrounding Areas
+                </h4>
+                <div style={{ position: 'relative', width: '100%', height: '300px', borderRadius: '0.5rem', overflow: 'hidden' }}>
+                  <iframe
+                    title="Indianapolis Service Area Map"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d196281.13346396655!2d-86.29639085!3d39.76838365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x886b50ffa7796a03%3A0xd68e9df640b9ea7c!2sIndianapolis%2C%20IN!5e0!3m2!1sen!2sus!4v1234567890"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
+                <p style={{ fontSize: '0.75rem', color: '#6b7280', marginTop: '0.75rem', textAlign: 'center' }}>
+                  We serve Indianapolis, Carmel, Fishers, Noblesville, Greenwood, and surrounding areas
+                </p>
               </div>
             </div>
 

@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, Mail, Lock, User, Phone, ArrowRight, Eye, EyeOff } from 'lucide-react';
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    name: '',
     email: '',
     phone: '',
     password: '',
     confirmPassword: '',
   });
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { register } = useAuth();
@@ -33,21 +34,10 @@ const RegisterPage = () => {
       return;
     }
 
-    if (formData.password.length < 6) {
-      setError('Password must be at least 6 characters');
-      return;
-    }
-
     setLoading(true);
 
     try {
-      await register({
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        phone: formData.phone,
-        password: formData.password,
-      });
+      await register(formData);
       navigate('/');
     } catch (err) {
       setError(err.response?.data?.error || 'Registration failed. Please try again.');
@@ -57,135 +47,481 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="flex justify-center">
-          <Sparkles className="h-12 w-12 text-primary-600" />
+    <div style={{
+      minHeight: '100vh',
+      display: 'flex',
+      background: 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%)',
+      position: 'relative',
+      overflow: 'hidden'
+    }}>
+      {/* Decorative Background Elements */}
+      <div style={{
+        position: 'absolute',
+        top: '-10%',
+        right: '-5%',
+        width: '500px',
+        height: '500px',
+        borderRadius: '50%',
+        background: 'rgba(255, 255, 255, 0.1)',
+        filter: 'blur(60px)'
+      }}></div>
+      <div style={{
+        position: 'absolute',
+        bottom: '-10%',
+        left: '-5%',
+        width: '400px',
+        height: '400px',
+        borderRadius: '50%',
+        background: 'rgba(255, 255, 255, 0.1)',
+        filter: 'blur(60px)'
+      }}></div>
+
+      {/* Left Side - Branding */}
+      <div style={{
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '3rem',
+        color: 'white',
+        position: 'relative',
+        zIndex: 1
+      }}>
+        <div style={{ maxWidth: '500px', textAlign: 'center' }}>
+          <Sparkles style={{ width: '80px', height: '80px', margin: '0 auto 2rem auto' }} />
+          <h1 style={{ fontSize: '3rem', fontWeight: 'bold', marginBottom: '1.5rem', lineHeight: '1.2' }}>
+            Join Three Space Shine
+          </h1>
+          <p style={{ fontSize: '1.25rem', opacity: 0.9, marginBottom: '2rem' }}>
+            Start booking premium detailing services today
+          </p>
+          <div style={{
+            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+            backdropFilter: 'blur(10px)',
+            padding: '2rem',
+            borderRadius: '1rem',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            textAlign: 'left'
+          }}>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem' }}>Why Join Us?</h3>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+              <li style={{ marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <span style={{ fontSize: '1.5rem' }}>✓</span>
+                <span>Easy online booking</span>
+              </li>
+              <li style={{ marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <span style={{ fontSize: '1.5rem' }}>✓</span>
+                <span>Track your service history</span>
+              </li>
+              <li style={{ marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <span style={{ fontSize: '1.5rem' }}>✓</span>
+                <span>Exclusive member discounts</span>
+              </li>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <span style={{ fontSize: '1.5rem' }}>✓</span>
+                <span>Priority scheduling</span>
+              </li>
+            </ul>
+          </div>
         </div>
-        <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
-          Create your account
-        </h2>
-        <p className="mt-2 text-center text-sm text-gray-600">
-          Already have an account?{' '}
-          <Link to="/login" className="font-medium text-primary-600 hover:text-primary-500">
-            Sign in
-          </Link>
-        </p>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <form className="space-y-6" onSubmit={handleSubmit}>
+      {/* Right Side - Register Form */}
+      <div style={{
+        flex: 1,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '3rem',
+        position: 'relative',
+        zIndex: 1
+      }}>
+        <div style={{
+          backgroundColor: 'white',
+          borderRadius: '1.5rem',
+          boxShadow: '0 25px 50px rgba(0, 0, 0, 0.3)',
+          padding: '3rem',
+          width: '100%',
+          maxWidth: '480px',
+          maxHeight: '90vh',
+          overflowY: 'auto'
+        }}>
+          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+            <h2 style={{ fontSize: '2rem', fontWeight: 'bold', color: '#111827', marginBottom: '0.5rem' }}>
+              Create Account
+            </h2>
+            <p style={{ color: '#6b7280', fontSize: '1rem' }}>
+              Get started with your free account
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
             {error && (
-              <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded">
+              <div style={{
+                backgroundColor: '#fef2f2',
+                border: '2px solid #fecaca',
+                color: '#dc2626',
+                padding: '1rem',
+                borderRadius: '0.75rem',
+                fontSize: '0.875rem',
+                fontWeight: '500'
+              }}>
                 {error}
               </div>
             )}
 
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
-                  First name
-                </label>
+            <div>
+              <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '600', color: '#374151', marginBottom: '0.5rem' }}>
+                Full Name
+              </label>
+              <div style={{ position: 'relative' }}>
+                <User style={{
+                  position: 'absolute',
+                  left: '1rem',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  width: '1.25rem',
+                  height: '1.25rem',
+                  color: '#9ca3af'
+                }} />
                 <input
-                  id="firstName"
-                  name="firstName"
                   type="text"
+                  name="name"
                   required
-                  value={formData.firstName}
+                  value={formData.name}
                   onChange={handleChange}
-                  className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                  placeholder="John Doe"
+                  style={{
+                    width: '100%',
+                    padding: '0.875rem 1rem 0.875rem 3rem',
+                    border: '2px solid #e5e7eb',
+                    borderRadius: '0.75rem',
+                    fontSize: '1rem',
+                    outline: 'none',
+                    transition: 'all 0.3s'
+                  }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = '#3b82f6';
+                    e.target.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.1)';
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = '#e5e7eb';
+                    e.target.style.boxShadow = 'none';
+                  }}
                 />
               </div>
+            </div>
 
-              <div>
-                <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
-                  Last name
-                </label>
+            <div>
+              <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '600', color: '#374151', marginBottom: '0.5rem' }}>
+                Email Address
+              </label>
+              <div style={{ position: 'relative' }}>
+                <Mail style={{
+                  position: 'absolute',
+                  left: '1rem',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  width: '1.25rem',
+                  height: '1.25rem',
+                  color: '#9ca3af'
+                }} />
                 <input
-                  id="lastName"
-                  name="lastName"
-                  type="text"
+                  type="email"
+                  name="email"
                   required
-                  value={formData.lastName}
+                  value={formData.email}
                   onChange={handleChange}
-                  className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                  placeholder="you@example.com"
+                  style={{
+                    width: '100%',
+                    padding: '0.875rem 1rem 0.875rem 3rem',
+                    border: '2px solid #e5e7eb',
+                    borderRadius: '0.75rem',
+                    fontSize: '1rem',
+                    outline: 'none',
+                    transition: 'all 0.3s'
+                  }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = '#3b82f6';
+                    e.target.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.1)';
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = '#e5e7eb';
+                    e.target.style.boxShadow = 'none';
+                  }}
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email address
+              <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '600', color: '#374151', marginBottom: '0.5rem' }}>
+                Phone Number
               </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                value={formData.email}
-                onChange={handleChange}
-                className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-              />
+              <div style={{ position: 'relative' }}>
+                <Phone style={{
+                  position: 'absolute',
+                  left: '1rem',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  width: '1.25rem',
+                  height: '1.25rem',
+                  color: '#9ca3af'
+                }} />
+                <input
+                  type="tel"
+                  name="phone"
+                  required
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="(317) 555-0123"
+                  style={{
+                    width: '100%',
+                    padding: '0.875rem 1rem 0.875rem 3rem',
+                    border: '2px solid #e5e7eb',
+                    borderRadius: '0.75rem',
+                    fontSize: '1rem',
+                    outline: 'none',
+                    transition: 'all 0.3s'
+                  }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = '#3b82f6';
+                    e.target.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.1)';
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = '#e5e7eb';
+                    e.target.style.boxShadow = 'none';
+                  }}
+                />
+              </div>
             </div>
 
             <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-                Phone number
-              </label>
-              <input
-                id="phone"
-                name="phone"
-                type="tel"
-                value={formData.phone}
-                onChange={handleChange}
-                className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '600', color: '#374151', marginBottom: '0.5rem' }}>
                 Password
               </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                required
-                value={formData.password}
-                onChange={handleChange}
-                className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-              />
+              <div style={{ position: 'relative' }}>
+                <Lock style={{
+                  position: 'absolute',
+                  left: '1rem',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  width: '1.25rem',
+                  height: '1.25rem',
+                  color: '#9ca3af'
+                }} />
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  name="password"
+                  required
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder="Create a strong password"
+                  style={{
+                    width: '100%',
+                    padding: '0.875rem 3rem 0.875rem 3rem',
+                    border: '2px solid #e5e7eb',
+                    borderRadius: '0.75rem',
+                    fontSize: '1rem',
+                    outline: 'none',
+                    transition: 'all 0.3s'
+                  }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = '#3b82f6';
+                    e.target.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.1)';
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = '#e5e7eb';
+                    e.target.style.boxShadow = 'none';
+                  }}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  style={{
+                    position: 'absolute',
+                    right: '1rem',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    padding: '0.25rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  {showPassword ? (
+                    <EyeOff style={{ width: '1.25rem', height: '1.25rem', color: '#9ca3af' }} />
+                  ) : (
+                    <Eye style={{ width: '1.25rem', height: '1.25rem', color: '#9ca3af' }} />
+                  )}
+                </button>
+              </div>
             </div>
 
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
-                Confirm password
+              <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '600', color: '#374151', marginBottom: '0.5rem' }}>
+                Confirm Password
               </label>
-              <input
-                id="confirmPassword"
-                name="confirmPassword"
-                type="password"
-                required
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-              />
+              <div style={{ position: 'relative' }}>
+                <Lock style={{
+                  position: 'absolute',
+                  left: '1rem',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  width: '1.25rem',
+                  height: '1.25rem',
+                  color: '#9ca3af'
+                }} />
+                <input
+                  type={showConfirmPassword ? 'text' : 'password'}
+                  name="confirmPassword"
+                  required
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  placeholder="Confirm your password"
+                  style={{
+                    width: '100%',
+                    padding: '0.875rem 3rem 0.875rem 3rem',
+                    border: '2px solid #e5e7eb',
+                    borderRadius: '0.75rem',
+                    fontSize: '1rem',
+                    outline: 'none',
+                    transition: 'all 0.3s'
+                  }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = '#3b82f6';
+                    e.target.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.1)';
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = '#e5e7eb';
+                    e.target.style.boxShadow = 'none';
+                  }}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  style={{
+                    position: 'absolute',
+                    right: '1rem',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    padding: '0.25rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  {showConfirmPassword ? (
+                    <EyeOff style={{ width: '1.25rem', height: '1.25rem', color: '#9ca3af' }} />
+                  ) : (
+                    <Eye style={{ width: '1.25rem', height: '1.25rem', color: '#9ca3af' }} />
+                  )}
+                </button>
+              </div>
             </div>
 
-            <div>
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50"
-              >
-                {loading ? 'Creating account...' : 'Create account'}
-              </button>
-            </div>
+            <button
+              type="submit"
+              disabled={loading}
+              style={{
+                width: '100%',
+                padding: '1rem',
+                backgroundColor: loading ? '#9ca3af' : '#1e3a8a',
+                color: 'white',
+                border: 'none',
+                borderRadius: '0.75rem',
+                fontSize: '1.125rem',
+                fontWeight: 'bold',
+                cursor: loading ? 'not-allowed' : 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.5rem',
+                transition: 'all 0.3s',
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                marginTop: '0.5rem'
+              }}
+              onMouseEnter={(e) => {
+                if (!loading) {
+                  e.target.style.backgroundColor = '#1e40af';
+                  e.target.style.transform = 'translateY(-2px)';
+                  e.target.style.boxShadow = '0 6px 12px rgba(0, 0, 0, 0.15)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!loading) {
+                  e.target.style.backgroundColor = '#1e3a8a';
+                  e.target.style.transform = 'translateY(0)';
+                  e.target.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+                }
+              }}
+            >
+              {loading ? (
+                <>
+                  <div style={{
+                    width: '1.25rem',
+                    height: '1.25rem',
+                    border: '2px solid white',
+                    borderTopColor: 'transparent',
+                    borderRadius: '50%',
+                    animation: 'spin 0.6s linear infinite'
+                  }}></div>
+                  <span>Creating Account...</span>
+                </>
+              ) : (
+                <>
+                  <span>Create Account</span>
+                  <ArrowRight style={{ width: '1.25rem', height: '1.25rem' }} />
+                </>
+              )}
+            </button>
           </form>
+
+          <div style={{
+            marginTop: '2rem',
+            paddingTop: '2rem',
+            borderTop: '1px solid #e5e7eb',
+            textAlign: 'center'
+          }}>
+            <p style={{ color: '#6b7280', fontSize: '0.875rem' }}>
+              Already have an account?{' '}
+              <Link
+                to="/login"
+                style={{
+                  color: '#1e3a8a',
+                  fontWeight: '700',
+                  textDecoration: 'none',
+                  transition: 'color 0.3s'
+                }}
+                onMouseEnter={(e) => e.target.style.color = '#3b82f6'}
+                onMouseLeave={(e) => e.target.style.color = '#1e3a8a'}
+              >
+                Sign In
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+          div[style*="flex: 1"]:first-child {
+            display: none !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };

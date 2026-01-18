@@ -10,25 +10,25 @@ const HomePage = () => {
     {
       icon: Car,
       title: 'Car Detailing',
-      description: 'Professional interior and exterior car detailing services',
-      packages: ['Basic - $79', 'Premium - $149', 'Elite - $249'],
-      link: '/services/car',
+      description: 'Drive with pride in a spotless vehicle',
+      benefits: ['Interior deep cleaning', 'Exterior polish & wax', 'Stain & odor removal', 'Weekly, monthly, or one-time plans'],
+      link: '/get-quote',
       image: 'https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?w=600&h=400&fit=crop'
     },
     {
       icon: HomeIcon,
-      title: 'House Detailing',
-      description: 'Comprehensive home cleaning and maintenance services',
-      packages: ['Basic - $199', 'Premium - $349', 'Elite - $549'],
-      link: '/services/house',
+      title: 'House Cleaning',
+      description: 'Enjoy more free time with your family',
+      benefits: ['Complete home cleaning', 'Eco-friendly products', 'Flexible scheduling', 'Trusted & insured professionals'],
+      link: '/get-quote',
       image: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?w=600&h=400&fit=crop'
     },
     {
       icon: Building2,
-      title: 'Office Detailing',
-      description: 'Commercial cleaning for offices and workspaces',
-      packages: ['Basic - $299', 'Premium - $499', 'Elite - $799'],
-      link: '/services/office',
+      title: 'Office Cleaning',
+      description: 'Impress clients with a pristine workspace',
+      benefits: ['After-hours service', 'Commercial-grade cleaning', 'Customized plans', 'Boost employee productivity'],
+      link: '/get-quote',
       image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop'
     },
   ];
@@ -262,81 +262,28 @@ const HomePage = () => {
               </div>
             </div>
 
-            {/* Right Side - Quick Booking Form */}
+            {/* Right Side - Get Quote CTA */}
             <div style={{
               backgroundColor: 'white',
-              padding: '2rem',
+              padding: '2.5rem',
               borderRadius: '1rem',
-              boxShadow: '0 20px 50px rgba(0,0,0,0.3)'
+              boxShadow: '0 20px 50px rgba(0,0,0,0.3)',
+              textAlign: 'center'
             }}>
-              <h3 style={{ color: '#1e3a8a', fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem', textAlign: 'center' }}>
-                Book Your Service Now
+              <h3 style={{ color: '#1e3a8a', fontSize: '1.75rem', fontWeight: 'bold', marginBottom: '1rem' }}>
+                Get Your Free Quote
               </h3>
-              <form style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  style={{
-                    padding: '0.875rem',
-                    border: '2px solid #e5e7eb',
-                    borderRadius: '0.5rem',
-                    fontSize: '1rem',
-                    outline: 'none',
-                    transition: 'border 0.3s'
-                  }}
-                />
-                <input
-                  type="email"
-                  placeholder="Email Address"
-                  style={{
-                    padding: '0.875rem',
-                    border: '2px solid #e5e7eb',
-                    borderRadius: '0.5rem',
-                    fontSize: '1rem',
-                    outline: 'none'
-                  }}
-                />
-                <input
-                  type="tel"
-                  placeholder="Phone Number"
-                  style={{
-                    padding: '0.875rem',
-                    border: '2px solid #e5e7eb',
-                    borderRadius: '0.5rem',
-                    fontSize: '1rem',
-                    outline: 'none'
-                  }}
-                />
-                <select style={{
-                  padding: '0.875rem',
-                  border: '2px solid #e5e7eb',
-                  borderRadius: '0.5rem',
-                  fontSize: '1rem',
-                  outline: 'none',
-                  color: '#6b7280'
-                }}>
-                  <option>Select Service</option>
-                  <option>Car Detailing</option>
-                  <option>House Detailing</option>
-                  <option>Office Detailing</option>
-                </select>
-                <input
-                  type="date"
-                  style={{
-                    padding: '0.875rem',
-                    border: '2px solid #e5e7eb',
-                    borderRadius: '0.5rem',
-                    fontSize: '1rem',
-                    outline: 'none'
-                  }}
-                />
-                <Link to="/services" style={{
+              <p style={{ color: '#6b7280', fontSize: '1rem', marginBottom: '2rem', lineHeight: '1.6' }}>
+                Tell us about your needs and we'll provide a custom quote within 24 hours. No obligation, completely free!
+              </p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <Link to="/get-quote" style={{
                   backgroundColor: '#1e3a8a',
                   color: 'white',
-                  padding: '1rem',
-                  borderRadius: '0.5rem',
+                  padding: '1.25rem',
+                  borderRadius: '0.75rem',
                   fontWeight: 'bold',
-                  fontSize: '1.125rem',
+                  fontSize: '1.25rem',
                   textAlign: 'center',
                   textDecoration: 'none',
                   display: 'flex',
@@ -346,11 +293,27 @@ const HomePage = () => {
                   boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
                   transition: 'all 0.3s'
                 }}>
-                  <Calendar className="h-5 w-5" />
-                  <span>Book Appointment</span>
+                  <Calendar className="h-6 w-6" />
+                  <span>Request Free Quote</span>
                 </Link>
-              </form>
-              <p style={{ color: '#6b7280', fontSize: '0.875rem', textAlign: 'center', marginTop: '1rem' }}>
+                <div style={{
+                  padding: '1.5rem',
+                  backgroundColor: '#f9fafb',
+                  borderRadius: '0.75rem',
+                  border: '2px solid #e5e7eb'
+                }}>
+                  <p style={{ color: '#374151', fontSize: '0.875rem', fontWeight: '600', marginBottom: '0.75rem' }}>
+                    ✓ Choose from weekly, monthly, or one-time plans
+                  </p>
+                  <p style={{ color: '#374151', fontSize: '0.875rem', fontWeight: '600', marginBottom: '0.75rem' }}>
+                    ✓ Custom pricing based on your needs
+                  </p>
+                  <p style={{ color: '#374151', fontSize: '0.875rem', fontWeight: '600' }}>
+                    ✓ Trusted by 2,500+ satisfied customers
+                  </p>
+                </div>
+              </div>
+              <p style={{ color: '#6b7280', fontSize: '0.875rem', textAlign: 'center', marginTop: '1.5rem' }}>
                 Or call us at <a href="tel:3174463498" style={{ color: '#1e3a8a', fontWeight: 'bold', textDecoration: 'none' }}>(317) 446-3498</a>
               </p>
             </div>
@@ -538,10 +501,10 @@ const HomePage = () => {
                     {service.description}
                   </p>
                   <div style={{ marginBottom: '1.5rem' }}>
-                    {service.packages.map((pkg, idx) => (
+                    {service.benefits.map((benefit, idx) => (
                       <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
                         <CheckCircle style={{ height: '1.25rem', width: '1.25rem', color: '#10b981' }} />
-                        <span style={{ color: '#374151', fontWeight: '500' }}>{pkg}</span>
+                        <span style={{ color: '#374151', fontWeight: '500' }}>{benefit}</span>
                       </div>
                     ))}
                   </div>
@@ -550,16 +513,17 @@ const HomePage = () => {
                     style={{
                       display: 'block',
                       textAlign: 'center',
-                      backgroundColor: '#1e3a8a',
+                      backgroundColor: '#10b981',
                       color: 'white',
-                      padding: '0.75rem',
+                      padding: '0.875rem',
                       borderRadius: '0.5rem',
                       fontWeight: 'bold',
+                      fontSize: '1.125rem',
                       textDecoration: 'none',
                       transition: 'all 0.3s'
                     }}
                   >
-                    Book Now
+                    Get Free Quote
                   </Link>
                 </div>
               </div>
