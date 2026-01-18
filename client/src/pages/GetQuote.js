@@ -40,11 +40,39 @@ const GetQuote = () => {
     });
   };
 
+  const calculateQuote = () => {
+    if (!formData.serviceType || !formData.planType) return null;
+
+    const basePrices = {
+      car: { 'one-time': 150, weekly: 120, 'bi-weekly': 130, monthly: 140 },
+      house: { 'one-time': 250, weekly: 180, 'bi-weekly': 200, monthly: 220 },
+      office: { 'one-time': 350, weekly: 280, 'bi-weekly': 300, monthly: 320 }
+    };
+
+    const basePrice = basePrices[formData.serviceType]?.[formData.planType] || 0;
+    
+    // Add property size multiplier
+    let sizeMultiplier = 1;
+    if (formData.propertySize) {
+      const size = parseInt(formData.propertySize);
+      if (size > 3000 || size > 5) sizeMultiplier = 1.5;
+      else if (size > 2000 || size > 3) sizeMultiplier = 1.3;
+      else if (size > 1000 || size > 2) sizeMultiplier = 1.1;
+    }
+
+    const totalPrice = Math.round(basePrice * sizeMultiplier);
+    const discount = formData.planType === 'weekly' ? 0.15 : formData.planType === 'bi-weekly' ? 0.10 : 0;
+    const finalPrice = Math.round(totalPrice * (1 - discount));
+
+    return { basePrice: totalPrice, discount, finalPrice };
+  };
+
+  const quote = calculateQuote();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would send the quote request to your backend
-    console.log('Quote Request:', formData);
-    alert('Thank you! We will contact you within 24 hours with a custom quote.');
+    console.log('Quote Request:', formData, 'Quote:', quote);
+    alert(`Your Quote: $${quote.finalPrice}\n\nThank you! We'll contact you to schedule your service.`);
     navigate('/');
   };
 
@@ -423,6 +451,44 @@ const GetQuote = () => {
                     />
                   </div>
                 </div>
+              </div>
+            )}
+
+            {/* Instant Quote Display */}
+            {quote && (
+              <div style={{
+                marginTop: '2rem',
+                padding: '1.5rem',
+                backgroundColor: '#ecfdf5',
+                border: '2px solid #10b981',
+                borderRadius: '0.75rem'
+              }}>
+                <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#065f46', marginBottom: '1rem' }}>
+                  ✨ Your Instant Quote
+                </h3>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div>
+                    <p style={{ fontSize: '0.875rem', color: '#047857', marginBottom: '0.25rem' }}>
+                      Base Price: ${quote.basePrice}
+                    </p>
+                    {quote.discount > 0 && (
+                      <p style={{ fontSize: '0.875rem', color: '#047857', marginBottom: '0.25rem' }}>
+                        Discount ({Math.round(quote.discount * 100)}%): -${Math.round(quote.basePrice * quote.discount)}
+                      </p>
+                    )}
+                  </div>
+                  <div style={{ textAlign: 'right' }}>
+                    <p style={{ fontSize: '0.875rem', color: '#047857', marginBottom: '0.25rem' }}>
+                      Total Price:
+                    </p>
+                    <p style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#065f46' }}>
+                      ${quote.finalPrice}
+                    </p>
+                  </div>
+                </div>
+                <p style={{ fontSize: '0.75rem', color: '#047857', marginTop: '0.75rem', fontStyle: 'italic' }}>
+                  * Final price may vary based on specific requirements. Complete the form to confirm your quote.
+                </p>
               </div>
             )}
 

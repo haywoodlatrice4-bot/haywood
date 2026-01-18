@@ -27,24 +27,47 @@ const Navbar = () => {
               <span>info@threespacshine.com</span>
             </a>
           </div>
-          {user && (
-            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-              {isAdmin && (
-                <Link to="/admin" style={{ color: 'white', textDecoration: 'none', fontSize: '0.875rem' }}>
-                  Admin
+          <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+            {user ? (
+              <>
+                {isAdmin && (
+                  <Link to="/admin" style={{ color: 'white', textDecoration: 'none', fontSize: '0.875rem' }}>
+                    Admin
+                  </Link>
+                )}
+                <Link to="/my-bookings" style={{ color: 'white', textDecoration: 'none', fontSize: '0.875rem' }}>
+                  My Bookings
                 </Link>
-              )}
-              <Link to="/my-bookings" style={{ color: 'white', textDecoration: 'none', fontSize: '0.875rem' }}>
-                My Bookings
-              </Link>
-              <button
-                onClick={handleLogout}
-                style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', fontSize: '0.875rem' }}
-              >
-                Logout
-              </button>
-            </div>
-          )}
+                <button
+                  onClick={handleLogout}
+                  style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', fontSize: '0.875rem' }}
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" style={{ color: 'white', textDecoration: 'none', fontSize: '0.875rem', fontWeight: '600' }}>
+                  Login
+                </Link>
+                <Link 
+                  to="/register" 
+                  style={{ 
+                    backgroundColor: '#10b981', 
+                    color: 'white', 
+                    padding: '0.375rem 0.875rem', 
+                    borderRadius: '0.375rem', 
+                    textDecoration: 'none', 
+                    fontSize: '0.875rem', 
+                    fontWeight: '600',
+                    transition: 'all 0.3s'
+                  }}
+                >
+                  Sign Up
+                </Link>
+              </>
+            )}
+          </div>
         </div>
       </div>
 
