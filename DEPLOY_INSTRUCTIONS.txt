@@ -1,0 +1,109 @@
+========================================
+  DEPLOY THREESPACSHINE TO VERCEL
+  Frontend + Backend Together
+========================================
+
+STEP 1: GO TO VERCEL
+========================================
+Open your browser and visit:
+https://vercel.com/new
+
+Sign up (FREE) or login
+
+
+STEP 2: UPLOAD YOUR PROJECT
+========================================
+Click "Browse" or drag and drop this folder:
+c:\Users\USER\CascadeProjects\ThreeSpaceShine
+
+Click "Deploy"
+
+
+STEP 3: WAIT FOR DEPLOYMENT (3 minutes)
+========================================
+Vercel will automatically:
+- Detect your React app
+- Build frontend
+- Deploy backend API
+- Give you live URL
+
+
+STEP 4: ADD ENVIRONMENT VARIABLES
+========================================
+After deployment:
+1. Go to your project dashboard
+2. Click Settings → Environment Variables
+3. Add these (one by one):
+
+JWT_SECRET
+threespacshine-super-secret-jwt-key-2026
+
+ADMIN_EMAIL
+haywoodlatrice4@gmail.com
+
+ADMIN_PASSWORD
+Admin123!
+
+CLIENT_URL
+https://threespacshine.vercel.app
+
+REACT_APP_API_URL
+https://threespacshine.vercel.app/api
+
+NODE_ENV
+production
+
+
+STEP 5: CREATE DATABASE
+========================================
+1. Click Storage tab
+2. Create Database → Postgres
+3. Name: threespacshine-db
+4. Click Create
+
+
+STEP 6: REDEPLOY
+========================================
+1. Go to Deployments tab
+2. Click ... on latest deployment
+3. Click Redeploy
+
+
+========================================
+  YOUR LIVE WEBSITE
+========================================
+
+Website: https://threespacshine.vercel.app
+Admin: https://threespacshine.vercel.app/admin
+
+Login:
+Email: haywoodlatrice4@gmail.com
+Password: Admin123!
+
+
+========================================
+  WHAT'S INCLUDED
+========================================
+
+✓ Car Detailing Services
+✓ House Detailing Services
+✓ Office Detailing Services
+✓ Online Booking System
+✓ Admin Dashboard
+✓ Customer Management
+✓ Booking Management
+✓ Photo Gallery
+✓ Review System
+✓ Mobile Responsive
+✓ Free SSL Certificate
+
+
+========================================
+  START NOW
+========================================
+
+Go to: https://vercel.com/new
+
+Your site will be live in 10 minutes!
+
+========================================

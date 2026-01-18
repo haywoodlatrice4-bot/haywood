@@ -1,0 +1,86 @@
+========================================
+  HOW TO TEST THREESPACSHINE NOW
+========================================
+
+Since PowerShell is blocked, use Command Prompt:
+
+METHOD 1 - Use the Batch File:
+========================================
+1. Press Win + R
+2. Type: cmd
+3. Press Enter
+4. Copy and paste this:
+
+cd c:\Users\USER\CascadeProjects\ThreeSpaceShine
+TEST_NOW.bat
+
+5. Press Enter and wait
+
+
+METHOD 2 - Manual Commands:
+========================================
+Open Command Prompt and run these one by one:
+
+cd c:\Users\USER\CascadeProjects\ThreeSpaceShine
+npm install
+cd client
+npm install
+cd ..
+npm run dev
+
+
+WHAT WILL HAPPEN:
+========================================
+- Backend starts on port 5000
+- Frontend starts on port 3000
+- Browser opens automatically to http://localhost:3000
+- You'll see the ThreeSpaceShine website
+
+
+ACCESS POINTS:
+========================================
+Website: http://localhost:3000
+Admin Panel: http://localhost:3000/admin
+API: http://localhost:5000/api/health
+
+
+ADMIN LOGIN:
+========================================
+Email: haywoodlatrice4@gmail.com
+Password: Admin123!
+
+
+WHAT YOU CAN TEST:
+========================================
+✓ Homepage - See all services
+✓ Services page - Car, House, Office detailing
+✓ Booking system - Book a service
+✓ Admin Dashboard - Manage everything
+✓ Customer management
+✓ Bookings management
+✓ Gallery upload
+✓ Reviews moderation
+
+
+TO STOP THE APP:
+========================================
+Press Ctrl + C in the command prompt window
+
+
+TROUBLESHOOTING:
+========================================
+If npm commands don't work:
+- Make sure you're using Command Prompt (cmd), NOT PowerShell
+- Check Node.js is installed: node --version
+- If not installed, download from: https://nodejs.org
+
+
+READY TO TEST?
+========================================
+Open Command Prompt and run:
+cd c:\Users\USER\CascadeProjects\ThreeSpaceShine
+TEST_NOW.bat
+
+Your app will start in 2-3 minutes!
+
+========================================
