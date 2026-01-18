@@ -15,3 +15,13 @@ services:
         value: haywoodlatrice4@gmail.com
       - key: ADMIN_PASSWORD
         value: Admin123!
+      - key: CLIENT_URL
+        value: https://threespacshine.netlify.app
+      - key: DATABASE_URL
+        sync: false
+      - key: BUSINESS_NAME
+        value: Three Space Shine
+      - key: BUSINESS_EMAIL
+        value: info@threespacshine.com
+      - key: BUSINESS_ADDRESS
+        value: Indianapolis, Indiana
