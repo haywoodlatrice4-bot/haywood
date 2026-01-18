@@ -123,42 +123,88 @@ const HomePage = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 text-white py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-black opacity-40"></div>
-        <div className="absolute inset-0" style={{
+      <section style={{
+        position: 'relative',
+        background: 'linear-gradient(to right, #1e3a8a, #1e40af, #1e3a8a)',
+        color: 'white',
+        paddingTop: '8rem',
+        paddingBottom: '8rem',
+        overflow: 'hidden'
+      }}>
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.4)',
+          zIndex: 1
+        }}></div>
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
           backgroundImage: 'url("https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1920&q=80")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          opacity: 0.3
+          opacity: 0.3,
+          zIndex: 0
         }}></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ position: 'relative', zIndex: 10 }}>
           <div className="text-center">
-            <h1 className="text-6xl font-bold mb-6 drop-shadow-lg animate-fade-in">
+            <h1 style={{ fontSize: '3.75rem', fontWeight: 'bold', marginBottom: '1.5rem', textShadow: '0 4px 6px rgba(0,0,0,0.3)' }}>
               Three Space Shine
             </h1>
-            <p className="text-3xl mb-4 font-semibold">
+            <p style={{ fontSize: '1.875rem', marginBottom: '1rem', fontWeight: '600' }}>
               Premium Detailing Services in Indianapolis, Indiana
             </p>
-            <p className="text-2xl mb-6 text-blue-100">
+            <p style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: '#bfdbfe' }}>
               Car • House • Office - We Make Everything Shine
             </p>
-            <div className="flex justify-center items-center space-x-2 mb-8">
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem', marginBottom: '2rem' }}>
               <Phone className="h-6 w-6" />
-              <a href="tel:3174463498" className="text-2xl font-bold hover:text-blue-200 transition-colors">
+              <a href="tel:3174463498" style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'white', textDecoration: 'none' }}>
                 (317) 446-3498
               </a>
             </div>
-            <div className="flex justify-center space-x-4">
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
               <Link
                 to="/services"
-                className="bg-white text-blue-900 px-10 py-4 rounded-lg font-bold text-lg hover:bg-blue-50 transition-all transform hover:scale-105 inline-flex items-center space-x-2 shadow-xl"
+                style={{
+                  backgroundColor: 'white',
+                  color: '#1e3a8a',
+                  padding: '1rem 2.5rem',
+                  borderRadius: '0.5rem',
+                  fontWeight: 'bold',
+                  fontSize: '1.125rem',
+                  textDecoration: 'none',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+                  transition: 'all 0.3s'
+                }}
               >
                 <span>Book Now</span>
                 <ArrowRight className="h-6 w-6" />
               </Link>
               <Link
                 to="/gallery"
-                className="border-3 border-white text-white px-10 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-blue-900 transition-all transform hover:scale-105 shadow-xl"
+                style={{
+                  border: '3px solid white',
+                  color: 'white',
+                  padding: '1rem 2.5rem',
+                  borderRadius: '0.5rem',
+                  fontWeight: 'bold',
+                  fontSize: '1.125rem',
+                  textDecoration: 'none',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+                  transition: 'all 0.3s'
+                }}
               >
                 View Gallery
               </Link>
@@ -168,14 +214,19 @@ const HomePage = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+      <section style={{
+        paddingTop: '4rem',
+        paddingBottom: '4rem',
+        background: 'linear-gradient(to right, #2563eb, #1e40af)',
+        color: 'white'
+      }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem' }}>
             {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <stat.icon className="h-12 w-12 mx-auto mb-4" />
-                <div className="text-4xl font-bold mb-2">{stat.number}</div>
-                <div className="text-blue-100 text-lg">{stat.label}</div>
+              <div key={index} style={{ textAlign: 'center' }}>
+                <stat.icon style={{ height: '3rem', width: '3rem', margin: '0 auto 1rem auto' }} />
+                <div style={{ fontSize: '2.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>{stat.number}</div>
+                <div style={{ color: '#bfdbfe', fontSize: '1.125rem' }}>{stat.label}</div>
               </div>
             ))}
           </div>
