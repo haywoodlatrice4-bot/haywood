@@ -1,23 +1,25 @@
-const Database = require('better-sqlite3');
-const path = require('path');
+const { Pool } = require('pg');
 require('dotenv').config();
 
-const dbPath = path.join(__dirname, '../../threespacshine.db');
-const db = new Database(dbPath);
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 
-db.pragma('journal_mode = WAL');
+pool.on('connect', () => {
+  console.log('✅ Connected to PostgreSQL database (Neon)');
+});
 
-console.log('Connected to SQLite database');
+pool.on('error', (err) => {
+  console.error('❌ Unexpected database error:', err);
+});
 
-const query = (sql, params = []) => {
+const query = async (text, params) => {
   try {
-    const stmt = db.prepare(sql);
-    if (sql.trim().toUpperCase().startsWith('SELECT')) {
-      return { rows: stmt.all(params) };
-    } else {
-      const info = stmt.run(params);
-      return { rows: [], rowCount: info.changes, insertId: info.lastInsertRowid };
-    }
+    const result = await pool.query(text, params);
+    return result;
   } catch (error) {
     console.error('Query error:', error);
     throw error;
@@ -26,5 +28,5 @@ const query = (sql, params = []) => {
 
 module.exports = {
   query,
-  db
+  pool
 };
