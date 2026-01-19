@@ -5,7 +5,8 @@ import { Sparkles, Mail, Lock, User, Phone, ArrowRight, Eye, EyeOff } from 'luci
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     phone: '',
     password: '',
@@ -173,7 +174,7 @@ const RegisterPage = () => {
 
             <div>
               <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '600', color: '#374151', marginBottom: '0.5rem' }}>
-                Full Name
+                First Name
               </label>
               <div style={{ position: 'relative' }}>
                 <User style={{
@@ -187,11 +188,53 @@ const RegisterPage = () => {
                 }} />
                 <input
                   type="text"
-                  name="name"
+                  name="firstName"
                   required
-                  value={formData.name}
+                  value={formData.firstName}
                   onChange={handleChange}
-                  placeholder="John Doe"
+                  placeholder="John"
+                  style={{
+                    width: '100%',
+                    padding: '0.875rem 1rem 0.875rem 3rem',
+                    border: '2px solid #e5e7eb',
+                    borderRadius: '0.75rem',
+                    fontSize: '1rem',
+                    outline: 'none',
+                    transition: 'all 0.3s'
+                  }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = '#3b82f6';
+                    e.target.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.1)';
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = '#e5e7eb';
+                    e.target.style.boxShadow = 'none';
+                  }}
+                />
+              </div>
+            </div>
+
+            <div>
+              <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '600', color: '#374151', marginBottom: '0.5rem' }}>
+                Last Name
+              </label>
+              <div style={{ position: 'relative' }}>
+                <User style={{
+                  position: 'absolute',
+                  left: '1rem',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  width: '1.25rem',
+                  height: '1.25rem',
+                  color: '#9ca3af'
+                }} />
+                <input
+                  type="text"
+                  name="lastName"
+                  required
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  placeholder="Doe"
                   style={{
                     width: '100%',
                     padding: '0.875rem 1rem 0.875rem 3rem',
