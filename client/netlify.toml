@@ -2,6 +2,9 @@
   publish = "build"
   command = "npm run build"
 
+[build.environment]
+  REACT_APP_API_URL = "https://haywood123.onrender.com/api"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
