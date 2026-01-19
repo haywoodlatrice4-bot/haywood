@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import AdminLayout from '../components/AdminLayout';
 import { Search, Mail, Phone, Calendar, DollarSign } from 'lucide-react';
@@ -15,9 +15,23 @@ function AdminCustomers() {
     fetchCustomers();
   }, []);
 
+  const filterCustomers = useCallback(() => {
+    if (!searchTerm) {
+      setFilteredCustomers(customers);
+      return;
+    }
+
+    const filtered = customers.filter(customer =>
+      customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      customer.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (customer.phone && customer.phone.includes(searchTerm))
+    );
+    setFilteredCustomers(filtered);
+  }, [searchTerm, customers]);
+
   useEffect(() => {
     filterCustomers();
-  }, [searchTerm, customers]);
+  }, [filterCustomers]);
 
   const fetchCustomers = async () => {
     try {
@@ -32,20 +46,6 @@ function AdminCustomers() {
     } finally {
       setLoading(false);
     }
-  };
-
-  const filterCustomers = () => {
-    if (!searchTerm) {
-      setFilteredCustomers(customers);
-      return;
-    }
-
-    const filtered = customers.filter(customer =>
-      customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      customer.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (customer.phone && customer.phone.includes(searchTerm))
-    );
-    setFilteredCustomers(filtered);
   };
 
   if (loading) {

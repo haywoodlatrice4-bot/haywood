@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Calendar, Home, Building2, Car, Clock, MapPin, User, Mail, Phone, MessageSquare, CheckCircle } from 'lucide-react';
+import { Home, Building2, Car, Clock, MapPin, User, Mail, Phone, MessageSquare, CheckCircle } from 'lucide-react';
 
 const GetQuote = () => {
   const navigate = useNavigate();

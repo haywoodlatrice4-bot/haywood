@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Car, Home as HomeIcon, Building2, Star, CheckCircle, ArrowRight, Phone, Mail, MapPin, Users, Award, Clock, TrendingUp, ChevronLeft, ChevronRight, Calendar, User, LogIn, UserPlus, MessageCircle } from 'lucide-react';
+import { Car, Home as HomeIcon, Building2, Star, CheckCircle, ArrowRight, Phone, Users, Award, Clock, TrendingUp, ChevronLeft, ChevronRight, Calendar, UserPlus, MessageCircle } from 'lucide-react';
 
 const HomePage = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
