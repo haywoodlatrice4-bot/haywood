@@ -27,47 +27,6 @@ const Navbar = () => {
               <span>info@threespacshine.com</span>
             </a>
           </div>
-          <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-            {user ? (
-              <>
-                {isAdmin && (
-                  <Link to="/admin" style={{ color: 'white', textDecoration: 'none', fontSize: '0.875rem' }}>
-                    Admin
-                  </Link>
-                )}
-                <Link to="/my-bookings" style={{ color: 'white', textDecoration: 'none', fontSize: '0.875rem' }}>
-                  My Bookings
-                </Link>
-                <button
-                  onClick={handleLogout}
-                  style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', fontSize: '0.875rem' }}
-                >
-                  Logout
-                </button>
-              </>
-            ) : (
-              <>
-                <Link to="/login" style={{ color: 'white', textDecoration: 'none', fontSize: '0.875rem', fontWeight: '600' }}>
-                  Login
-                </Link>
-                <Link 
-                  to="/register" 
-                  style={{ 
-                    backgroundColor: '#10b981', 
-                    color: 'white', 
-                    padding: '0.375rem 0.875rem', 
-                    borderRadius: '0.375rem', 
-                    textDecoration: 'none', 
-                    fontSize: '0.875rem', 
-                    fontWeight: '600',
-                    transition: 'all 0.3s'
-                  }}
-                >
-                  Sign Up
-                </Link>
-              </>
-            )}
-          </div>
         </div>
       </div>
 
@@ -156,32 +115,107 @@ const Navbar = () => {
             >
               About
             </Link>
-            <Link
-              to="/get-quote"
-              style={{
-                backgroundColor: '#10b981',
-                color: 'white',
-                padding: '0.75rem 1.5rem',
-                borderRadius: '0.5rem',
-                textDecoration: 'none',
-                fontSize: '1rem',
-                fontWeight: 'bold',
-                transition: 'all 0.3s',
-                boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.backgroundColor = '#059669';
-                e.target.style.transform = 'translateY(-2px)';
-                e.target.style.boxShadow = '0 4px 8px rgba(0,0,0,0.15)';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.backgroundColor = '#10b981';
-                e.target.style.transform = 'translateY(0)';
-                e.target.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
-              }}
-            >
-              Get Free Quote
-            </Link>
+            {user ? (
+              <>
+                {isAdmin && (
+                  <Link
+                    to="/admin"
+                    style={{
+                      color: '#374151',
+                      textDecoration: 'none',
+                      fontSize: '1rem',
+                      fontWeight: '600',
+                      transition: 'color 0.3s'
+                    }}
+                    onMouseEnter={(e) => e.target.style.color = '#1e3a8a'}
+                    onMouseLeave={(e) => e.target.style.color = '#374151'}
+                  >
+                    Admin
+                  </Link>
+                )}
+                <Link
+                  to="/my-bookings"
+                  style={{
+                    color: '#374151',
+                    textDecoration: 'none',
+                    fontSize: '1rem',
+                    fontWeight: '600',
+                    transition: 'color 0.3s'
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = '#1e3a8a'}
+                  onMouseLeave={(e) => e.target.style.color = '#374151'}
+                >
+                  My Bookings
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  style={{
+                    background: 'none',
+                    border: '2px solid #1e3a8a',
+                    color: '#1e3a8a',
+                    padding: '0.75rem 1.5rem',
+                    borderRadius: '0.5rem',
+                    fontSize: '1rem',
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = '#1e3a8a';
+                    e.target.style.color = 'white';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = 'transparent';
+                    e.target.style.color = '#1e3a8a';
+                  }}
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  style={{
+                    color: '#374151',
+                    textDecoration: 'none',
+                    fontSize: '1rem',
+                    fontWeight: '600',
+                    transition: 'color 0.3s'
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = '#1e3a8a'}
+                  onMouseLeave={(e) => e.target.style.color = '#374151'}
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/register"
+                  style={{
+                    backgroundColor: '#10b981',
+                    color: 'white',
+                    padding: '0.75rem 1.5rem',
+                    borderRadius: '0.5rem',
+                    textDecoration: 'none',
+                    fontSize: '1rem',
+                    fontWeight: 'bold',
+                    transition: 'all 0.3s',
+                    boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = '#059669';
+                    e.target.style.transform = 'translateY(-2px)';
+                    e.target.style.boxShadow = '0 4px 8px rgba(0,0,0,0.15)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = '#10b981';
+                    e.target.style.transform = 'translateY(0)';
+                    e.target.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+                  }}
+                >
+                  Sign Up
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>
