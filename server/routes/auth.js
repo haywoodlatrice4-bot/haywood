@@ -34,17 +34,18 @@ router.post('/register',
       }
 
       const hashedPassword = await bcrypt.hash(password, 10);
+      const fullName = `${firstName} ${lastName}`;
 
       const result = await db.query(
-        `INSERT INTO users (email, password, first_name, last_name, phone, role)
-         VALUES ($1, $2, $3, $4, $5, $6)
-         RETURNING id, email, first_name, last_name, phone, role, created_at`,
-        [email, hashedPassword, firstName, lastName, phone, 'customer']
+        `INSERT INTO users (email, password, name, phone, is_admin)
+         VALUES ($1, $2, $3, $4, $5)
+         RETURNING id, email, name, phone, is_admin, created_at`,
+        [email, hashedPassword, fullName, phone, false]
       );
 
       const user = result.rows[0];
       const token = jwt.sign(
-        { id: user.id, email: user.email, role: user.role },
+        { id: user.id, email: user.email, role: user.is_admin ? 'admin' : 'customer' },
         process.env.JWT_SECRET,
         { expiresIn: '7d' }
       );
@@ -55,10 +56,9 @@ router.post('/register',
         user: {
           id: user.id,
           email: user.email,
-          firstName: user.first_name,
-          lastName: user.last_name,
+          name: user.name,
           phone: user.phone,
-          role: user.role
+          role: user.is_admin ? 'admin' : 'customer'
         }
       });
     } catch (error) {
@@ -99,7 +99,7 @@ router.post('/login',
       }
 
       const token = jwt.sign(
-        { id: user.id, email: user.email, role: user.role },
+        { id: user.id, email: user.email, role: user.is_admin ? 'admin' : 'customer' },
         process.env.JWT_SECRET,
         { expiresIn: '7d' }
       );
@@ -110,10 +110,9 @@ router.post('/login',
         user: {
           id: user.id,
           email: user.email,
-          firstName: user.first_name,
-          lastName: user.last_name,
+          name: user.name,
           phone: user.phone,
-          role: user.role
+          role: user.is_admin ? 'admin' : 'customer'
         }
       });
     } catch (error) {
