@@ -1,0 +1,8 @@
+This file forces Netlify to rebuild with latest changes.
+Timestamp: 2026-01-18 23:37:00
+All fixes included:
+- Single login (no duplicate)
+- Gallery page
+- Registration with firstName/lastName
+- API URL configured
+- Poppins font
