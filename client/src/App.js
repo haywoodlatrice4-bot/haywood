@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import HomePage from './pages/Home';
 import ServicesPage from './pages/Services';
 import AboutPage from './pages/About';
+import GalleryPage from './pages/Gallery';
 import GetQuotePage from './pages/GetQuote';
 import LoginPage from './pages/Login';
 import RegisterPage from './pages/Register';
@@ -27,6 +28,7 @@ function App() {
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/services/:category" element={<ServicesPage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/gallery" element={<GalleryPage />} />
             <Route path="/get-quote" element={<GetQuotePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
