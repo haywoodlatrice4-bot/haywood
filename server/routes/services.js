@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
   try {
     const { category, package_type } = req.query;
     
-    let query = 'SELECT * FROM services WHERE active = true';
+    let query = 'SELECT * FROM services WHERE is_active = true';
     const params = [];
     
     if (category) {
@@ -33,7 +33,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const result = await db.query(
-      'SELECT * FROM services WHERE id = $1 AND active = true',
+      'SELECT * FROM services WHERE id = $1 AND is_active = true',
       [req.params.id]
     );
     
@@ -51,7 +51,7 @@ router.get('/:id', async (req, res) => {
 router.get('/category/:category', async (req, res) => {
   try {
     const result = await db.query(
-      'SELECT * FROM services WHERE category = $1 AND active = true ORDER BY price',
+      'SELECT * FROM services WHERE category = $1 AND is_active = true ORDER BY price',
       [req.params.category]
     );
     
