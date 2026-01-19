@@ -30,6 +30,23 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'Three Space Shine API',
+    status: 'running',
+    version: '1.0.0',
+    endpoints: {
+      health: '/api/health',
+      auth: '/api/auth',
+      services: '/api/services',
+      bookings: '/api/bookings',
+      reviews: '/api/reviews',
+      gallery: '/api/gallery',
+      admin: '/api/admin'
+    }
+  });
+});
+
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Three Space Shine API is running' });
 });
