@@ -132,59 +132,6 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Top Bar with Login/Register */}
-      <div style={{
-        backgroundColor: '#1e3a8a',
-        color: 'white',
-        padding: '0.75rem 0',
-        fontSize: '0.875rem'
-      }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-            <a href="tel:3174463498" style={{ color: 'white', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Phone className="h-4 w-4" />
-              <span>(317) 446-3498</span>
-            </a>
-            <a href="mailto:info@threespacshine.com" style={{ color: 'white', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Mail className="h-4 w-4" />
-              <span>info@threespacshine.com</span>
-            </a>
-          </div>
-          <div style={{ display: 'flex', gap: '1rem' }}>
-            <Link to="/login" style={{
-              color: 'white',
-              textDecoration: 'none',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              padding: '0.5rem 1rem',
-              backgroundColor: 'rgba(255,255,255,0.1)',
-              borderRadius: '0.375rem',
-              fontWeight: '600',
-              transition: 'all 0.3s'
-            }}>
-              <LogIn className="h-4 w-4" />
-              <span>Login</span>
-            </Link>
-            <Link to="/register" style={{
-              color: '#1e3a8a',
-              backgroundColor: 'white',
-              textDecoration: 'none',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              padding: '0.5rem 1rem',
-              borderRadius: '0.375rem',
-              fontWeight: '700',
-              transition: 'all 0.3s'
-            }}>
-              <UserPlus className="h-4 w-4" />
-              <span>Sign Up</span>
-            </Link>
-          </div>
-        </div>
-      </div>
-
       {/* Hero Section with Booking Form */}
       <section style={{
         position: 'relative',
